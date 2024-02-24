@@ -32,11 +32,13 @@
 .button_wrapper img {
 	width: 30px;
 	height: auto;
+	cursor: pointer;
 }
 
 .button_wrapper:hover{
 	background-color: #323339;
 	color: red;
+	cursor: pointer;
 }
 
 /*X 이쁘게 그리는 방법*/
