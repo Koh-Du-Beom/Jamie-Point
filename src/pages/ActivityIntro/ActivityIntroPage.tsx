@@ -13,8 +13,7 @@ import activityIntroThird from '../../assets/Intro/ActivityIntro/activityIntroTh
 import documentationIntroFirst from '../../assets/Intro/DocumentationIntro/documentationIntroFirst.png';
 import documentationIntroSecond from '../../assets/Intro/DocumentationIntro/documentationIntroSecond.png';
 
-import useScrollFadeIn from '../../hooks/useScrollFadeIn';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const ActivityIntroPage:React.FC = () => {
 
@@ -89,7 +88,7 @@ const ActivityIntroPage:React.FC = () => {
 									2. 활동 내역을 입력해주세요
 								</div>
 								<div className={classes.content}>
-									<img src={activityIntroSecond} alt='activityIntroSecond'/>
+									<img className={classes.introImage} src={activityIntroSecond} alt='activityIntroSecond'/>
 								</div>
 							</div>
 
@@ -98,7 +97,7 @@ const ActivityIntroPage:React.FC = () => {
 									3. 활동 세부사항을 입력해주세요 
 								</div>
 								<div className={classes.content}>
-									<img src={activityIntroThird} alt='activityIntroThird'/>
+									<img className={classes.introImage} src={activityIntroThird} alt='activityIntroThird'/>
 								</div>
 							</div>
 							
@@ -134,5 +133,4 @@ const ActivityIntroPage:React.FC = () => {
 	)
 }
 
-//지금 각자 다른 시간에 나오는거로 되어있는데, 스크롤 내릴 때 점점 선명하게 보이는 식으로 구현하기
 export default ActivityIntroPage;

@@ -10,7 +10,7 @@ body {
 /* 웹킷 기반 브라우저 외에도, Firefox 등 다른 브라우저를 위한 CSS 스크롤바 속성도 있습니다 */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #ffffff #000000;
+  scrollbar-color: #323339 #000000;
 }
 
 
