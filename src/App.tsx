@@ -10,9 +10,6 @@ import SWValuePage from './pages/ActivityPage/SWValuePage';
 import SWConvergencePage from './pages/ActivityPage/SWConvergencePage';
 
 function App() {
-  console.log("rendered!");
-	
-
   return (
 		<Routes>
 			<Route path="/" element={<HomePage/>}/>

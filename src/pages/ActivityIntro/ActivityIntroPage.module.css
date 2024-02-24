@@ -2,6 +2,7 @@
 .container{
 	display: flex;
 	flex-direction: column;
+	margin: 0 auto;
 }
 
 .title_container{
@@ -10,7 +11,6 @@
 }
 
 .big_title{
-	
 	font-size: 6em;
 	width: 600px;
 	color: #ffffff;

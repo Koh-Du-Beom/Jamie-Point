@@ -18,7 +18,9 @@ const UserInfoLayout : React.FC <{children : React.ReactNode}> = ({children}) =>
 				{ isModalOpen ? <FinalCheckModal onClose={closeModal}/> : null }
 			</div>
 			<BottomNavBar openModal={openModal}/>
-			<BottomInfo/>
+			<div className={classes.footer_wrapper}>
+				<BottomInfo/>
+			</div>
 		</div>
 	)
 };
