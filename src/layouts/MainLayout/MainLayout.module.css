@@ -1,0 +1,31 @@
+.mainLayout {
+  display: flex;
+  flex-direction: column; 
+  min-height: 100vh; 
+	background-color: #000000;
+	overflow-x: hidden;
+}
+
+.content {
+	display: flex;
+	margin: 0 auto;
+	padding-top: 20px;
+	align-items: flex-start;
+}
+
+.childrenWrapper{
+	flex : 1;
+}
+
+.rightNavBarWrapper{
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	top: 30px;
+}
+
+.footer_wrapper{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

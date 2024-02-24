@@ -1,0 +1,89 @@
+
+.container{
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	background-color: #2B2C31;
+	margin: 30px;
+	border-radius: 20px;
+}
+
+.wrapper{
+	margin: 0 10px 10px 0;
+	background-color: #2B2C31;
+}
+
+.end_double{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	
+}
+
+.button_wrapper {
+	border: none;
+	background-color: transparent;
+	padding: 0 10px;
+	border-radius: 8px;
+	background-color: #2B2C31;
+	color: #ffffff;
+}
+
+.button_wrapper img {
+	width: 30px;
+	height: auto;
+}
+
+.button_wrapper:hover{
+	background-color: #323339;
+	color: red;
+}
+
+/*X 이쁘게 그리는 방법*/
+.close_button{
+	display: inline-block;
+	border: none;
+}
+
+.close_button:after{
+	display: inline-block;
+	content : "\00d7";
+	font-size: 30px;
+}
+
+
+.double{
+	display: flex;
+	flex-direction: row;
+}
+
+.big_title{
+	font-size: 20px;
+	color: #ffffff;
+	background-color: #2B2C31;
+}
+
+.small_title{
+	font-size: 15px;
+	color: #ffffff;
+	background-color: #2B2C31;
+}
+
+.input{
+	padding: 8px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+  cursor: pointer; 
+	border-radius: 10px;
+	border: 2px solid transparent;
+	background-color: #323339;
+	color: #ffffff;
+}
+
+.input:hover{
+	border: 2px solid #32A4FF;
+}
+
+.errorMsg{
+	color: red;
+}
+

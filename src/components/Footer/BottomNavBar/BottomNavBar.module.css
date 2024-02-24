@@ -1,0 +1,48 @@
+
+
+.navbar{
+	display: flex;
+	position: sticky;
+	bottom: 0px;
+	background-color: #ffffff;
+	height: 80px;
+	align-items: center;
+	justify-content: center;
+	z-index: 10;
+}
+
+.wrapper{
+	display: flex;
+	justify-content: space-between;
+	width: 100vw;
+	padding: 20px;
+}
+
+.web_button{
+	border-radius: 8px;
+	border: none;
+}
+
+.send_button{
+	border-radius: 8px;
+	border: none;
+	background-color: #000000;
+	color: #ffffff;
+	font-size: 20px;
+	padding: 10px;
+}
+
+.send_button:hover{
+	background-color: #2B2C31;
+	
+}
+
+.disabled_button {
+	border-radius: 8px;
+	border: none;
+  background-color: #cccccc; 
+  color: #666666; 
+  cursor: not-allowed; 
+	font-size: 20px;
+	padding: 10px;
+}

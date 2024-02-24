@@ -1,0 +1,129 @@
+
+.container{
+	display: flex;
+	flex-direction: column;
+}
+
+.title_container{
+	display: flex;
+	flex-direction: column;
+}
+
+.big_title{
+	
+	font-size: 6em;
+	width: 600px;
+	color: #ffffff;
+	position: absolute;
+	top: 80px;
+	left: 200px;
+	animation: slide 2s;
+}
+
+.sub_title{
+	font-size: 5em;
+	width: 600;
+	color: #ffffff;
+	position: absolute;
+	top: 200px;
+	left: 400px;
+	animation: slide_second 4s;
+}
+
+@keyframes slide{
+	from {
+		left: -100px;	
+		opacity : 0;
+	}
+	to{
+		left: 200px;
+		opacity: 1;
+	}
+}
+
+@keyframes slide_second{
+	from {
+		left: -800px;
+		opacity: 0;
+	}
+	to{
+		left: 400px;
+		opacity: 1;
+	}
+}
+
+.content_container{
+	display: flex;
+	flex-direction: column;
+	margin-top: 300px;
+}
+
+.content_wrapper{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 150px;
+	opacity: 1;
+}
+
+.content_title{
+	font-size: 50px;
+}
+
+.content_box{
+	display: flex;
+	flex-direction: column;
+}
+
+.content{
+	font-size: 30px;
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.content .introImage{
+	height: 300px;
+	object-fit: contain;
+	margin: 10px;
+}
+
+
+.content_Icon{
+	width: 100px;
+}
+
+.navigation_button{
+	position: fixed; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  background-color: #000000; 
+  color: #FFFFFF; 
+  cursor: pointer;
+  border: none; 
+  padding: 10px 20px;
+}
+
+.button_prev{
+	left: 200px;
+}
+
+.button_next{
+	right: 200px;
+}
+
+.fadeIn{
+	animation: fadeInAnimation 1s forwards;
+}
+
+@keyframes fadeInAnimation {
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
+	}
+}
+

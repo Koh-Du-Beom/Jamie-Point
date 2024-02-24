@@ -1,0 +1,21 @@
+.homeLayout{
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: #000000;
+	color: #ffffff;
+	overflow-x: hidden;
+}
+
+.content{
+	display: flex;
+	margin: 0 auto;
+	padding-top: 20px;
+	align-items: flex-start;
+}
+
+.footer_wrapper{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
