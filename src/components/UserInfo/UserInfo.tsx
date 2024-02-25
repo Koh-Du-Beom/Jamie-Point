@@ -1,8 +1,7 @@
 /*eslint-disable*/
 import classes from '../../styles/FormStyles.module.css';
 import ImageControler from '../ImageControler/ImageControler';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../../stores/redux/store';
 import { updateUserInfo } from '../../stores/redux/userSlice';
