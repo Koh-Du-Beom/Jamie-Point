@@ -29,3 +29,10 @@
 .button:active{
   transform: scale(0.98);
 }
+
+@media(max-width : 780px){
+	.navbar{
+		width: 150px;
+		margin: 15px;
+	}
+}

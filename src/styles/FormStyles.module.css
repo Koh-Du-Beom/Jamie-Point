@@ -17,7 +17,6 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	
 }
 
 .button_wrapper {
@@ -79,6 +78,7 @@
 	border: 2px solid transparent;
 	background-color: #323339;
 	color: #ffffff;
+	width: 100%;
 }
 
 .input:hover{
@@ -89,3 +89,13 @@
 	color: red;
 }
 
+@media(max-width: 780px){
+	.container{
+		margin: 15px;
+		width: 400px;
+	}
+
+	.double{
+		flex-direction: column;
+	}
+}

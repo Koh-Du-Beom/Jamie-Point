@@ -13,7 +13,7 @@ const BottomInfo:React.FC = () => {
 				<div className={classes.menu}>
 					<div className={classes.menu_title}>
 						<img src={githubLogo} alt='githubLogo'/>
-						개발자들
+						Developers
 					</div>
 					<div className={classes.menu_content}><a className={classes.link} href='https://github.com/zs0057'>김지성</a></div>
 					<div className={classes.menu_content}><a className={classes.link} href='https://github.com/Koh-Du-Beom'>고두범</a></div>
@@ -21,15 +21,19 @@ const BottomInfo:React.FC = () => {
 				<div className={classes.menu}>
 					<div className={classes.menu_title}>
 						<img src={discordLogo} alt='discordLogo'/>
-						디스코드
+						Discord
 					</div>
 					<div className={classes.menu_content}>JPoint</div>
 				</div>
 				<div className={classes.menu}>
-					<div className={classes.menu_title}>추가내용 1</div>
+					<div className={classes.menu_title}>
+						추가내용 1
+					</div>
 				</div>
 				<div className={classes.menu}>
-					<div className={classes.menu_title}>추가내용 2</div>
+					<div className={classes.menu_title}>
+						추가내용 2
+					</div>
 				</div>
 			</div>
 		</div>

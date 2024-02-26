@@ -4,13 +4,9 @@ import classes from "../../styles/FormStyles.module.css";
 import ImageControler from "../ImageControler/ImageControler";
 import ActivityDropDown from "./ActivityDropDown/ActivityDropDown";
 import ActivityType from "../../types/ActivityType.type";
-import saveIcon from '../../assets/saveIcon.png';
 import styled from "styled-components";
 import TierCalculator from "./TierCalculator";
-import useUnSavedAlert from "../../hooks/useUnSavedAlert";
 import Divider from "../Divider/Divider";
-import { isValidName, } from '../../utils/regularExpression/isValidUserInfo';
-
 
 const AreaWrapper = styled.div`
 	display: flex;
@@ -158,7 +154,7 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 				<AreaWrapper>
 					<div className={classes.big_title}>{area}</div>
 				</AreaWrapper>
-				<div className={`${classes.wrapper} ${classes.double}`}>
+				<div className={`${classes.wrapper}`}>
 					<button className={`${classes.button_wrapper} ${classes.close_button}`} onClick={()=>onRemove(id)}/>		
 				</div>			
 			</div>
@@ -182,33 +178,33 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 			</div>
 			
 			<div className={classes.big_title}>활동 세부 사항 </div>
-			<div className={`${classes.wrapper} ${classes.double}`}>
-				<div className={classes.wrapper}>
-					<div>
-						<div className={classes.small_title}>취득기관</div>
-						<input 
-							className={classes.input}
-							type='text'
-							onChange={(e) =>handleAgency(e)}
-							onBlur={handleAgencyBlur}
-							value={agency}
-						/>
-					</div>
-				</div>
-				
-				<div className={classes.wrapper}>
-					<div>
-						<div className={classes.small_title}>취득일자</div>
-						<input
-							className={classes.input} 
-							type='text'
-							onChange={(e) => handleDate(e)}
-							onBlur={handleDateBlur}
-							value={date}
-						/>
-					</div>
+			
+			<div className={classes.wrapper}>
+				<div>
+					<div className={classes.small_title}>취득기관</div>
+					<input 
+						className={classes.input}
+						type='text'
+						onChange={(e) =>handleAgency(e)}
+						onBlur={handleAgencyBlur}
+						value={agency}
+					/>
 				</div>
 			</div>
+				
+			<div className={classes.wrapper}>
+				<div>
+					<div className={classes.small_title}>취득일자</div>
+					<input
+						className={classes.input} 
+						type='text'
+						onChange={(e) => handleDate(e)}
+						onBlur={handleDateBlur}
+						value={date}
+					/>
+				</div>
+			</div>
+			
 
 			<div className={classes.wrapper}>
 				<div className={classes.small_title}>상세정보</div>
