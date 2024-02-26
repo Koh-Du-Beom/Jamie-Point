@@ -53,11 +53,6 @@
 }
 
 
-.double{
-	display: flex;
-	flex-direction: row;
-}
-
 .big_title{
 	font-size: 20px;
 	color: #ffffff;
@@ -70,7 +65,7 @@
 	background-color: #2B2C31;
 }
 
-.input{
+.wrapper input{
 	padding: 8px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
   cursor: pointer; 
@@ -95,7 +90,4 @@
 		width: 400px;
 	}
 
-	.double{
-		flex-direction: column;
-	}
 }

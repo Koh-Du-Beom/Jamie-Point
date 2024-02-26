@@ -341,6 +341,9 @@ const UserInfo : React.FC = () => {
 				</div>
 			</div>
 
+			<Divider/>		
+			<div className={classes.big_title}>연락처</div>
+
 			<div className={`${classes.wrapper} ${classes.double}`}>
 				<div className={classes.wrapper}>
 					<div>
