@@ -1,16 +1,18 @@
 
 import { useState, useEffect } from 'react';
 import classes from '../../../styles/FormStyles.module.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../../../stores/redux/store';
+import { AppDispatch } from '../../../stores/redux/store';
 import { updateUserInfo } from '../../../stores/redux/userSlice';
-import Divider from '../../Divider/Divider';
 import { isValidName, isValidStudentNumber, } from '../../../utils/regularExpression/isValidUserInfo';
+import UserInfoType from '../../../types/UserInfoType.type';
 
-const IdentityInfo : React.FC = () => {
-	const dispatch = useDispatch<AppDispatch>();
-	const userInfo = useSelector((state: RootState) => state.userInfo);
+interface InfoProps {
+  userInfo: UserInfoType;
+  dispatch: AppDispatch; // AppDispatch 타입을 직접 사용
+}
 
+const IdentityInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
+	
 	const [name, setName] = useState<string>('');
 	const [major, setMajor] = useState<string>(''); //전공
 	const [grade, setGrade] = useState<string>('');
@@ -26,6 +28,8 @@ const IdentityInfo : React.FC = () => {
 	//useRef 이용해 만약 잘못된 입력값이면 커서를 잘못된 필드로 옮겨보기
 
 	const handleNameBlur = () => {
+		console.log(typeof dispatch);
+		
 		if (!isValidName(name)){
 			setErrorMsg((prev) => ({...prev, name : `${name? '올바른 이름이 아닙니다' : ''}`}));
 			setName('');
@@ -70,8 +74,15 @@ const IdentityInfo : React.FC = () => {
 	}
 
 	useEffect(()=> {
-
-	})
+		if(userInfo){
+			setName(userInfo.name);
+      setGrade(userInfo.grade);
+      setMajor(userInfo.major);
+      setStudentNumber(userInfo.studentNumber);
+		}	
+		console.log(name);
+		
+	}, [userInfo]);
 	// redux의 상태로 다른페이지를 다녀와도 업데이트 해주는 로직
 
 	return (
