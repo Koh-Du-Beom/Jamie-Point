@@ -7,6 +7,7 @@ import ActivityType from "../../types/ActivityType.type";
 import styled from "styled-components";
 import TierCalculator from "./TierCalculator";
 import Divider from "../Divider/Divider";
+import convertToBase64 from "../../utils/commonFunctions/convertToBase64";
 
 const AreaWrapper = styled.div`
 	display: flex;
@@ -69,14 +70,6 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 			onActivityChange(id, updatedActivity);
 		}
 	};
-	
-	const convertToBase64 = (file : File, callback: (base64String : string) => void) => {
-		const reader = new FileReader();
-		reader.onload = () => {
-			callback(reader.result as string);
-		};
-		reader.readAsDataURL(file); 
-	}//fileReader 알아보기
 
 	const handleAgency = (event : React.ChangeEvent<HTMLInputElement>) => {
 		const newAgency = event.target.value;

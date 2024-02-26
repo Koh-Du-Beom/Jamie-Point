@@ -47,10 +47,14 @@ const BankInfo : React.FC<InfoProps> = ({ userInfo, dispatch}) => {
 	}
 
 	const handleBankBookImg = (file : File | null) => {
-		if (file){
-			convertToBase64(file, setBankBookImg);
+		if(file){
+			convertToBase64(file, (base64String: string) => {
+				setBankBookImg(base64String);
+				dispatch(updateUserInfo({ ...userInfo, bankBookImg: base64String }));
+			});
 		}else{
 			setBankBookImg('');
+			dispatch(updateUserInfo({ ...userInfo, idCardImg: '' }))
 		}
 	}
 

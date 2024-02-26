@@ -20,19 +20,25 @@ const PersonalInfo : React.FC<InfoProps> = ({ userInfo, dispatch }) => {
 
 	const handleIdCardImg= (file : File | null) => {
 		if(file){
-			convertToBase64(file, setIdCardImg);
-			dispatch(updateUserInfo({...userInfo, idCardImg}));
+			convertToBase64(file, (base64String: string) => {
+				setIdCardImg(base64String);
+				dispatch(updateUserInfo({ ...userInfo, idCardImg: base64String }));
+			});
 		}else{
 			setIdCardImg('');
+			dispatch(updateUserInfo({ ...userInfo, idCardImg: '' }))
 		}
 	};
 
-	const handleSignImg = async (file : File | null) => {
+	const handleSignImg = (file : File | null) => {
 		if(file){
-			convertToBase64(file, setSignImg);
-			dispatch(updateUserInfo({...userInfo, signImg}));
+			convertToBase64(file, (base64String : string) => {
+				setSignImg(base64String);
+				dispatch(updateUserInfo({...userInfo, signImg : base64String}));
+			});
 		}else{
 			setSignImg('');
+			dispatch(updateUserInfo({ ...userInfo, signImg: '' }))
 		}
 	};
 
