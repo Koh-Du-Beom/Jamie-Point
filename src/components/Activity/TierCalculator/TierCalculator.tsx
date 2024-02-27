@@ -1,12 +1,14 @@
 /*eslint-disable*/
 import { useEffect, useState } from "react";
-import classes from '../../styles/FormStyles.module.css';
+import classes from '../../../styles/FormStyles.module.css';
+import TierPoint from "./TierPoint";
 
 interface TierCalculatorProps{
 	selectedType : string;
+	setDetail : (detail : string) => void;
 }
 
-const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType}) => {
+const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, setDetail}) => {
 	
 	const [prevBigTier, setPrevBigTier] = useState<string>('');
 	const [prevTier, setPrevTier] = useState('');
@@ -17,14 +19,14 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType}) => {
 	const bojBigTiers = ['Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Ruby'];
 	const bojSmallTiers = ['I', 'II', 'III', 'IV', 'V'];
 	const programmersTiers = ['Lv.0', 'Lv.1', 'Lv.2', 'Lv.3', 'Lv.4', 'Lv.5'];
-	
-	const [point, setPoint] = useState<number>(0);
+
+	const [psId, setPsId] = useState<string>('');
 
 	const handlePrevBigTierChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		setPrevBigTier(event.target.value);
 		setPrevTier('');
 	};
-
+	
 	// 선택한 큰 티어에 따라 작은 티어 선택지 생성
 	const getBojPrevTierOptions = () => {
 		if (!prevBigTier) return []; 
@@ -41,6 +43,7 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType}) => {
 		return bojSmallTiers.map(smallTier => `${currentBigTier} ${smallTier}`);
 	};
 
+
 	const handleProgPrevTierChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		setPrevTier(event.target.value);
 	}
@@ -49,10 +52,22 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType}) => {
 		setCurrentTier(event.target.value);
 	}
 
-	return (
-		//큰 티어 작은 티어 선택하는거 다시 고민해보기
+	useEffect(()=>{
+		if(prevTier && currentTier){
+			setDetail(prevTier + ' → ' + currentTier);
+		}
+
+		const point = TierPoint(selectedType, prevTier, currentTier);
+		console.log(point);
 		
-		<div className={`${classes.wrapper} ${classes.double}`}>
+		if (point){
+			
+		}
+	}, [prevTier, currentTier]);
+
+	return (
+		
+		<>
 			<div className={classes.wrapper}>
 				<div className={classes.small_title}>이전 티어 선택</div>		
 					
@@ -64,7 +79,7 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType}) => {
 						</select>	
 					</div>
 				) : (
-					<>
+					<div style={{display: "flex"}}>
 						<div className={classes.wrapper}>
 							<select value={prevBigTier} onChange={handlePrevBigTierChange}>
 								<option value="">큰 티어를 선택해주세요</option>
@@ -80,7 +95,7 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType}) => {
 							</div>
 						) : null}
 						
-					</>)}
+					</div>)}
 			</div>
 			<div className={classes.wrapper}>
 				<div className={classes.small_title}>현재 티어 선택</div>
@@ -92,7 +107,7 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType}) => {
 						</select>	
 					</div>
 				) : (
-					<>
+					<div style={{display: "flex"}}>
 						<div className={classes.wrapper}>
 							<select value={currentBigTier} onChange={handleCurrentBigTierChange}>
 								<option value="">큰 티어를 선택해주세요</option>
@@ -108,11 +123,11 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType}) => {
 							</div>
 						) : null}
 						
-					</>)}
+					</div>)}
 					
 					
 			</div>
-		</div>
+		</>
 	);
 }
 

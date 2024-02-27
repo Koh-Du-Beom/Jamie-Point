@@ -5,7 +5,7 @@ import ImageControler from "../ImageControler/ImageControler";
 import ActivityDropDown from "./ActivityDropDown/ActivityDropDown";
 import ActivityType from "../../types/ActivityType.type";
 import styled from "styled-components";
-import TierCalculator from "./TierCalculator";
+import TierCalculator from "./TierCalculator/TierCalculator";
 import Divider from "../Divider/Divider";
 import convertToBase64 from "../../utils/commonFunctions/convertToBase64";
 
@@ -140,6 +140,11 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 		onActivityChange(id, updatedActivity);
 	}
 
+	useEffect(()=> {
+		console.log(point);
+		
+	}, [point]);
+
 	return (
 		<div className={classes.container}>
 			
@@ -165,7 +170,7 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 					onDropDownChange={handleDropDownChange}
 					dropDownData={dropDowns}
 				/>
-				{program === '코딩 문제풀이' && type && <TierCalculator selectedType={type}/>}
+				{program === '코딩 문제풀이' && type && <TierCalculator selectedType={type} setDetail={setDetail}/>}
 				{point ? <div className={classes.small_title}>{`환산점수 : ${point}`}</div> : null}
 				
 			</div>
