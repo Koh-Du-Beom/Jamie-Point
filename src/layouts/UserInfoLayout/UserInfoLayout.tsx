@@ -11,17 +11,22 @@ const UserInfoLayout : React.FC <{children : React.ReactNode}> = ({children}) =>
 	const openModal = () => setIsModalOpen(true);
 	const closeModal = () => setIsModalOpen(false);
 	return( 
-		<div className={classes.userInfoLayout}>
+		<>
 			<TopNavBar/>
-			<div className={classes.content}>
-				{children}
-				{ isModalOpen ? <FinalCheckModal onClose={closeModal}/> : null }
+			<div className={classes.userInfoLayout}>
+				
+				<div className={classes.content}>
+					{children}
+					{ isModalOpen ? <FinalCheckModal onClose={closeModal}/> : null }
+				</div>
+				
 			</div>
 			<BottomNavBar openModal={openModal}/>
-			<div className={classes.footer_wrapper}>
-				<BottomInfo/>
-			</div>
-		</div>
+				<div className={classes.footer_wrapper}>
+					<BottomInfo/>
+				</div>
+		</>
+		
 	)
 };
 

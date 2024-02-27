@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import ActivityType from "../../types/ActivityType.type";
 import UserInfoType from "../../types/UserInfoType.type";
+import PSActivityType from "../../types/PSActivityType.type";
 
 interface TotalActivity{
 	activityCount : number;
@@ -21,6 +22,7 @@ interface UserState{
   signImg: string;
 
   activities: ActivityType[];
+	psActivities : PSActivityType[];
 	swCoreInfo : TotalActivity;
 	swCooperationInfo : TotalActivity;
 	swValueInfo : TotalActivity;
@@ -42,12 +44,14 @@ const initialState: UserState = {
   idCardImg: '',
   signImg: '',
   activities: [],
+	psActivities : [],
 	swCoreInfo : {activityCount: 0, totalPoint: 0},
 	swCooperationInfo : {activityCount: 0, totalPoint: 0},
 	swValueInfo : {activityCount: 0, totalPoint: 0},
 	swConvergenceInfo : {activityCount: 0, totalPoint: 0},
 	totalAwards : 0,
 	totalPoint : 0,
+	
 };
 
 export const userSlice = createSlice({

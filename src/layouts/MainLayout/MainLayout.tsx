@@ -33,20 +33,22 @@ const MainLayout: React.FC<{children : React.ReactNode}> = ({children}) => {
   };
 
   return (
-    <div className={classes.mainLayout}>    
-      <TopNavBar/>
-      <div className={classes.content}>
-				<div className={classes.childrenWrapper}>{children}</div>
-				<div className={classes.rightNavBarWrapper} style={rightNavBarStyle}><RightNavBar/></div>
-				{ isModalOpen ? <FinalCheckModal onClose={closeModal}/> : null }
+		<>
+			<TopNavBar/>
+			<div className={classes.mainLayout}>    
 				
-      </div>	
-			<BottomNavBar openModal={openModal}/>
-			<div className={classes.footer_wrapper}>
-				<BottomInfo/>
+				<div className={classes.content}>
+					<div className={classes.childrenWrapper}>{children}</div>
+					<div className={classes.rightNavBarWrapper} style={rightNavBarStyle}><RightNavBar/></div>
+					{ isModalOpen ? <FinalCheckModal onClose={closeModal}/> : null }
+					
+				</div>		
 			</div>
-			
-    </div>
+			<BottomNavBar openModal={openModal}/>
+			<div className={classes.footer_wrapper}><BottomInfo/></div>
+				
+		</>
+    
   )
 }
 

@@ -5,16 +5,20 @@ import BottomInfo from '../../components/Footer/BottomInfo/BottomInfo';
 
 const HomeLayout : React.FC<{children : React.ReactNode}> = ({ children }) => {
 	return (
-		<div className={classes.homeLayout}>
-			<TopNavBar/>
-			<div className={classes.content}>
-				{children}
+		<>
+			<TopNavBar/>	
+			<div className={classes.homeLayout}>
+				
+				<div className={classes.content}>
+					{children}
+				</div>
+				<div className={classes.footer_wrapper}>
+					<BottomInfo/>
+				</div>
+				
 			</div>
-			<div className={classes.footer_wrapper}>
-				<BottomInfo/>
-			</div>
-			
-		</div>
+		</>
+		
 	)
 };
 

@@ -3,7 +3,7 @@
   flex-direction: column; 
   min-height: 100vh; 
 	background-color: #000000;
-	overflow-x: hidden;
+	overflow-x : hidden;
 }
 
 .content {
@@ -24,12 +24,11 @@
 	top: 30px;
 }
 
+
 .footer_wrapper{
+	background-color: #000000;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-@media(max-width: 780px){
-	
-}

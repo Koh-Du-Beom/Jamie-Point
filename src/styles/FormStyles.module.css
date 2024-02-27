@@ -86,8 +86,7 @@
 
 @media(max-width: 780px){
 	.container{
-		margin: 15px;
-		width: 400px;
+		margin-right: 5px;
 	}
 
 }
