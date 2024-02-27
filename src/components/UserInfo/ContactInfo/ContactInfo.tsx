@@ -25,10 +25,19 @@ const ContactInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 		if(!isValidPhoneNumber(phoneNumber)){
 			setErrorMsg((prev) => ({...prev, phoneNumber : `${phoneNumber? '올바른 연락처가 아닙니다' : ''}`}));
 			setPhoneNumber('');
-			dispatch(updateUserInfo({...userInfo, phoneNumber}));
+			dispatch(updateUserInfo({...userInfo, phoneNumber : ''}));
 		}else{
+			if(phoneNumber.length > 12){
+				setErrorMsg((prev) => ({...prev, phoneNumber : `${phoneNumber? '올바른 연락처가 아닙니다' : ''}`}));
+				setPhoneNumber('');
+				dispatch(updateUserInfo({...userInfo, phoneNumber : ''}));
+				return;
+			}
+			const formattedPhoneNumber = phoneNumber.replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3');
+			console.log(formattedPhoneNumber);
+			setPhoneNumber(formattedPhoneNumber);
 			setErrorMsg((prev) => ({...prev, phoneNumber : undefined}));
-			dispatch(updateUserInfo({...userInfo, phoneNumber}));
+			dispatch(updateUserInfo({...userInfo, phoneNumber : formattedPhoneNumber}));
 		}
 	}
 
@@ -36,7 +45,7 @@ const ContactInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 		if(!isValidEmail(email)){
 			setErrorMsg((prev) => ({...prev, email : `${email? '올바른 이메일이 아닙니다' : ''}`}));
 			setEmail('');
-			dispatch(updateUserInfo({...userInfo, email}));
+			dispatch(updateUserInfo({...userInfo, email : ''}));
 		}else{
 			setErrorMsg((prev) => ({...prev, email : undefined}));
 			dispatch(updateUserInfo({...userInfo, email}));
@@ -48,6 +57,8 @@ const ContactInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 			setPhoneNumber(userInfo.phoneNumber);
       setEmail(userInfo.email);
 		}
+		console.log(userInfo);
+		
 	}, [userInfo]);
 
 	return (

@@ -8,6 +8,7 @@ import styled from "styled-components";
 import TierCalculator from "./TierCalculator";
 import Divider from "../Divider/Divider";
 import convertToBase64 from "../../utils/commonFunctions/convertToBase64";
+import Calendar from "../DatePicker/DatePicker";
 
 const AreaWrapper = styled.div`
 	display: flex;
@@ -185,7 +186,7 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 				</div>
 			</div>
 				
-			<div className={classes.wrapper}>
+			{/* <div className={classes.wrapper}>
 				<div>
 					<div className={classes.small_title}>취득일자</div>
 					<input
@@ -196,8 +197,8 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 						value={date}
 					/>
 				</div>
-			</div>
-			
+			</div> */}
+			<Calendar/>
 
 			<div className={classes.wrapper}>
 				<div className={classes.small_title}>상세정보</div>

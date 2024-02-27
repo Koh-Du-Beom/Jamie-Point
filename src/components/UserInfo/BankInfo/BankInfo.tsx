@@ -28,7 +28,7 @@ const BankInfo : React.FC<InfoProps> = ({ userInfo, dispatch}) => {
 		if(!isValidAccountNumber(bankAccount)){
 			setErrorMsg((prev) => ({...prev, bankAccount : `${bankAccount? '올바른 계좌번호가 아닙니다' : ''}`}));
 			setBankAccount('');
-			dispatch(updateUserInfo({...userInfo, bankAccount}));
+			dispatch(updateUserInfo({...userInfo, bankAccount : ''}));
 		}else{
 			setErrorMsg((prev) => ({...prev, bankAccount : undefined}));
 			dispatch(updateUserInfo({...userInfo, bankAccount}));
@@ -39,7 +39,7 @@ const BankInfo : React.FC<InfoProps> = ({ userInfo, dispatch}) => {
 		if(!isValidName(bankName)){
 			setErrorMsg((prev) => ({...prev, bankName : `${bankName? '올바른 은행명이 아닙니다' : ''}`}));
 			setBankName('');
-			dispatch(updateUserInfo({...userInfo, bankName}));
+			dispatch(updateUserInfo({...userInfo, bankName : ''}));
 		}else{
 			setErrorMsg((prev) => ({...prev, bankName : undefined}));
 			dispatch(updateUserInfo({...userInfo, bankName}));

@@ -12,10 +12,7 @@ const UserInfo : React.FC = () => {
 	
 	const dispatch = useDispatch<AppDispatch>();
 	const userInfo = useSelector((state: RootState) => state.userInfo);
-
-	console.log(typeof dispatch);
 	
-
 	return (
 		<form className={classes.container}>
 			<IdentityInfo userInfo={userInfo} dispatch={dispatch}/>

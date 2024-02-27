@@ -28,12 +28,10 @@ const IdentityInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 	//useRef 이용해 만약 잘못된 입력값이면 커서를 잘못된 필드로 옮겨보기
 
 	const handleNameBlur = () => {
-		console.log(typeof dispatch);
-		
 		if (!isValidName(name)){
 			setErrorMsg((prev) => ({...prev, name : `${name? '올바른 이름이 아닙니다' : ''}`}));
 			setName('');
-			dispatch(updateUserInfo({ ...userInfo, name }));
+			dispatch(updateUserInfo({ ...userInfo, name : '' }));
 		}else{
 			setErrorMsg((prev) => ({...prev, name : undefined}));
 			dispatch(updateUserInfo({ ...userInfo, name }));
@@ -44,7 +42,7 @@ const IdentityInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 		if(!isValidName(major)){
 			setErrorMsg((prev) => ({...prev, major : `${major? '올바른 학과가 아닙니다' : ''}`}));
 			setMajor('');
-			dispatch(updateUserInfo({ ...userInfo, major}));
+			dispatch(updateUserInfo({ ...userInfo, major : ''}));
 		}else{
 			setErrorMsg((prev) => ({...prev, major : undefined}));
 			dispatch(updateUserInfo({ ...userInfo, major}));
@@ -55,7 +53,7 @@ const IdentityInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 		if(!isValidStudentNumber(grade)){
 			setErrorMsg((prev) => ({...prev, grade : `${grade? '올바른 학년이 아닙니다' : ''}`}));
 			setGrade('');
-			dispatch(updateUserInfo({ ...userInfo, grade}));
+			dispatch(updateUserInfo({ ...userInfo, grade : ''}));
 		}else{
 			setErrorMsg((prev) => ({...prev, grade : undefined}));
 			dispatch(updateUserInfo({...userInfo, grade}));
@@ -66,7 +64,7 @@ const IdentityInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 		if (!isValidStudentNumber(studentNumber)){
 			setErrorMsg((prev) => ({...prev, studentNumber : `${studentNumber? '올바른 학번이 아닙니다' : ''}`}));
 			setStudentNumber('');
-			dispatch(updateUserInfo({ ...userInfo, studentNumber}));
+			dispatch(updateUserInfo({ ...userInfo, studentNumber : ''}));
 		}else{
 			setErrorMsg((prev) => ({...prev, studentNumber: undefined}));
 			dispatch(updateUserInfo({ ...userInfo, studentNumber}));
@@ -80,8 +78,6 @@ const IdentityInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
       setMajor(userInfo.major);
       setStudentNumber(userInfo.studentNumber);
 		}	
-		console.log(name);
-		
 	}, [userInfo]);
 	// redux의 상태로 다른페이지를 다녀와도 업데이트 해주는 로직
 
