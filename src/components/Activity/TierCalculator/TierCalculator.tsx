@@ -5,10 +5,11 @@ import TierPoint from "./TierPoint";
 
 interface TierCalculatorProps{
 	selectedType : string;
+	detail : string;
 	setDetail : (detail : string) => void;
 }
 
-const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, setDetail}) => {
+const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, detail ,setDetail}) => {
 	
 	const [prevBigTier, setPrevBigTier] = useState<string>('');
 	const [prevTier, setPrevTier] = useState('');
@@ -52,6 +53,10 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, setDetail}
 		setCurrentTier(event.target.value);
 	}
 
+	const handlePsIdBlur = () => {
+
+	}
+
 	useEffect(()=>{
 		if(prevTier && currentTier){
 			setDetail(prevTier + ' → ' + currentTier);
@@ -65,11 +70,31 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, setDetail}
 		}
 	}, [prevTier, currentTier]);
 
+	useEffect(()=> {
+		const tiers : string[] = detail.split(" → ");
+		console.log(tiers);
+		
+	}, [detail]);
+
 	return (
 		
 		<>
 			<div className={classes.wrapper}>
-				<div className={classes.small_title}>이전 티어 선택</div>		
+				<div className={classes.wrapper}>
+					<div className={classes.small_title}>
+						{selectedType === '프로그래머스 1레벨/2레벨/3레벨 이상' ? '프로그래머스ID' : '백준ID'}
+					</div>
+					<input 
+						className={classes.input}
+						type="text"
+						onChange={(e) => setPsId(e.target.value)}
+						onBlur={handlePsIdBlur}
+						value={psId}
+					/>
+				</div>
+				
+				<div className={classes.wrapper}>
+					<div className={classes.small_title}>이전 티어 선택</div>		
 					
 				{selectedType === '프로그래머스 1레벨/2레벨/3레벨 이상' ? (
 					<div className={classes.wrapper}>
@@ -124,6 +149,8 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, setDetail}
 						) : null}
 						
 					</div>)}
+				</div>
+				
 					
 					
 			</div>

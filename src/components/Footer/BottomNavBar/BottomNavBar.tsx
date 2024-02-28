@@ -9,12 +9,12 @@ interface BottomNavBarProps{
 
 const BottomNavBar: React.FC<BottomNavBarProps> = ({openModal}) => {
 
-	const userInfo = useSelector((state : RootState) => state.userInfo)
+	const activityInfo = useSelector((state : RootState) => state.activityInfo)
 	const isAbleToDocument = () => {
-		const swCorePoint = userInfo.swCoreInfo.totalPoint;
-		const swCooperationPoint = userInfo.swCooperationInfo.totalPoint;
-		const swValuePoint = userInfo.swValueInfo.totalPoint;
-		const swConvergencePoint = userInfo.swConvergenceInfo.totalPoint;
+		const swCorePoint = activityInfo.swCoreInfo.totalPoint;
+		const swCooperationPoint = activityInfo.swCooperationInfo.totalPoint;
+		const swValuePoint = activityInfo.swValueInfo.totalPoint;
+		const swConvergencePoint = activityInfo.swConvergenceInfo.totalPoint;
 
 		return swCorePoint || swCooperationPoint || swValuePoint || swConvergencePoint;
 	}

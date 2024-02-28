@@ -6,7 +6,7 @@ import ActivityType from "../../types/ActivityType.type";
 import classes from './ActivityPageStyles.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from "../../stores/redux/store";
-import { updateActivity, removeActivity, updateSWValueInfo, updateTotals } from "../../stores/redux/userSlice";
+import { updateActivity, removeActivity, updateSWValueInfo, } from "../../stores/redux/activitySlice";
 import {v4 as uuidv4} from 'uuid';
 import plusButton from '../../assets/plusButton.webp';
 import summaryButton from '../../assets/summaryButton.webp';
@@ -45,17 +45,17 @@ const SWValuePage:React.FC = () => {
 
 
 	const dispatch = useDispatch<AppDispatch>();
-	const userInfo = useSelector((state : RootState) => state.userInfo);
+	const activityInfo = useSelector((state : RootState) => state.activityInfo);
 	
 
 	useEffect(()=>{
-		const filteredActivities = userInfo.activities.filter(activity => activity.pageType === area);
+		const filteredActivities = activityInfo.activities.filter(activity => activity.pageType === area);
 		if (filteredActivities.length === 0){
 			setActivitiesData([defaultActivity]);
 		}else{
 			setActivitiesData(filteredActivities);
 		}
-	}, [userInfo.activities, area])
+	}, [activityInfo.activities, area])
 
 	//현재 상태를 하위컴포넌트의 handleActivityChange를 통해서 상위컴포넌트의 activityData를 업데이트해주는 로직을
 	//선택했는데, 이거 때문에 최신값이 반영이 안되는 문제점이 있었음,
@@ -79,9 +79,11 @@ const SWValuePage:React.FC = () => {
 
 	useEffect(()=>{
 		const calculateSWCoreInfo = () => {
-			const totalPoint = activitiesData.reduce((acc, activity) => acc + (activity.point || 0), 0);
-			const activityCount = activitiesData.length;
-
+			const realActivitiesData = activitiesData.filter(activity => activity.point !== 0)
+			// point가 0이 아닌, 즉 올바르게 입력된 데이터에 대해서만 정보를 업데이트
+			
+			const totalPoint = realActivitiesData.reduce((acc, activity) => acc + (activity.point || 0), 0);
+			const activityCount = realActivitiesData.length;
 			dispatch(updateSWValueInfo({ activityCount, totalPoint }));
 		};
 

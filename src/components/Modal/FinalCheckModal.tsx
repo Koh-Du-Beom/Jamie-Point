@@ -10,10 +10,18 @@ interface ModalProps {
 }
 
 const FinalCheckModal: React.FC<ModalProps> = ({ onClose }) => {
-  const userInfo = useSelector((state: RootState) => state.userInfo);
+
+	const userInfo = useSelector((state: RootState) => state.userInfo);
+  const activityInfo = useSelector((state: RootState) => state.activityInfo);
 
   const handleDocumentation = async () => {
-    const body = JSON.stringify(userInfo);
+
+		const finalInfo = {
+			userInfo, 
+			activityInfo,
+		} // redux의 내용들을 통합해서 한번에 보내주기 
+
+    const body = JSON.stringify(finalInfo);
     console.log(body);
 
     try {
@@ -91,23 +99,23 @@ const FinalCheckModal: React.FC<ModalProps> = ({ onClose }) => {
               <tbody>
                 <tr>
                   <td>SW핵심역량</td>
-                  <td>{userInfo.swCoreInfo.activityCount}</td>
-                  <td>{userInfo.swCoreInfo.totalPoint}</td>
+                  <td>{activityInfo.swCoreInfo.activityCount}</td>
+                  <td>{activityInfo.swCoreInfo.totalPoint}</td>
                 </tr>
                 <tr>
                   <td>SW산학협력·창업역량</td>
-                  <td>{userInfo.swCooperationInfo.activityCount}</td>
-                  <td>{userInfo.swCooperationInfo.totalPoint}</td>
+                  <td>{activityInfo.swCooperationInfo.activityCount}</td>
+                  <td>{activityInfo.swCooperationInfo.totalPoint}</td>
                 </tr>
                 <tr>
                   <td>SW가치확산역량</td>
-                  <td>{userInfo.swValueInfo.activityCount}</td>
-                  <td>{userInfo.swValueInfo.totalPoint}</td>
+                  <td>{activityInfo.swValueInfo.activityCount}</td>
+                  <td>{activityInfo.swValueInfo.totalPoint}</td>
                 </tr>
                 <tr>
                   <td>SW융합역량</td>
-                  <td>{userInfo.swConvergenceInfo.activityCount}</td>
-                  <td>{userInfo.swConvergenceInfo.totalPoint}</td>
+                  <td>{activityInfo.swConvergenceInfo.activityCount}</td>
+                  <td>{activityInfo.swConvergenceInfo.totalPoint}</td>
                 </tr>
               </tbody>
             </table>
