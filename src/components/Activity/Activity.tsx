@@ -8,6 +8,8 @@ import styled from "styled-components";
 import TierCalculator from "./TierCalculator/TierCalculator";
 import Divider from "../Divider/Divider";
 import convertToBase64 from "../../utils/commonFunctions/convertToBase64";
+import { useSelector } from "react-redux";
+import { RootState } from "../../stores/redux/store";
 
 const AreaWrapper = styled.div`
 	display: flex;
@@ -42,6 +44,8 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 	const [agency, setAgency] = useState<string>("");
 	const [date, setDate] = useState<string>("");
 	const [detail, setDetail] = useState<string>("");
+
+	const psInfo = useSelector((state : RootState) => state.psInfo);
 
 	const dropDowns : ActivityDropDownProps= {
 		program : program,
@@ -119,7 +123,12 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 
 		setAgency(activitiesData.agency);
 		setDate(activitiesData.date);
-		setDetail(activitiesData.detail);	
+		if(psInfo.detail && activitiesData.program === '코딩 문제풀이'){
+			setDetail(psInfo.detail);
+		}else{
+			setDetail(activitiesData.detail);	
+		}
+
 	}, [activitiesData]); // 페이지가 처음 렌더링 될때 실행
 
 	const handleDropDownChange = (selectedData : ActivityDropDownProps) => {

@@ -74,7 +74,6 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 			if (point){
 				setPoint(point);
 				console.log('포인트설정됨');
-				
 			}
 		
 			// detail이 업데이트될 때 Redux 상태 업데이트
@@ -85,6 +84,8 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 				psImage: activityImg
 			}));
 		}
+
+		// 지금 해야할거 : updateSWTotal 이런거 해주고, p
 	}, [prevTier, currentTier, selectedType, psId, activityImg, dispatch]);
 
 	useEffect(()=>{
@@ -104,6 +105,11 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 			setCurrentTier(currentTierInfos);
 			setPsId(psInfo.psID);
 			setDetail(psInfo.detail);
+			const point = TierPoint(selectedType, prevTier, currentTier);
+			if (point){
+				setPoint(point);
+				console.log('포인트설정됨');
+			}
 		}
 		
 	}, [psInfo])
