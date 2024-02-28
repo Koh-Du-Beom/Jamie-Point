@@ -2,14 +2,20 @@
 import { useEffect, useState } from "react";
 import classes from '../../../styles/FormStyles.module.css';
 import TierPoint from "./TierPoint";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../stores/redux/store";
+import { updatePS } from "../../../stores/redux/psSlice";
+
 
 interface TierCalculatorProps{
 	selectedType : string;
+	activityImg : string;
+	setPoint : (point : number) => void;
 	detail : string;
 	setDetail : (detail : string) => void;
 }
 
-const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, detail ,setDetail}) => {
+const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityImg, setPoint, detail, setDetail}) => {
 	
 	const [prevBigTier, setPrevBigTier] = useState<string>('');
 	const [prevTier, setPrevTier] = useState('');
@@ -20,6 +26,9 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, detail ,se
 	const bojBigTiers = ['Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Ruby'];
 	const bojSmallTiers = ['I', 'II', 'III', 'IV', 'V'];
 	const programmersTiers = ['Lv.0', 'Lv.1', 'Lv.2', 'Lv.3', 'Lv.4', 'Lv.5'];
+
+	const dispatch = useDispatch<AppDispatch>();
+	const psInfo = useSelector((state : RootState) => state.psInfo);
 
 	const [psId, setPsId] = useState<string>('');
 
@@ -54,27 +63,50 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, detail ,se
 	}
 
 	const handlePsIdBlur = () => {
-
+		dispatch(updatePS({...psInfo, psID : psId}));
 	}
 
+	useEffect(() => {
+		if (prevTier && currentTier) {
+			const newDetail = prevTier + ' → ' + currentTier;
+			setDetail(newDetail);
+			const point = TierPoint(selectedType, prevTier, currentTier);
+			if (point){
+				setPoint(point);
+				console.log('포인트설정됨');
+				
+			}
+		
+			// detail이 업데이트될 때 Redux 상태 업데이트
+			dispatch(updatePS({
+				type: selectedType,
+				psID: psId,
+				detail: newDetail,
+				psImage: activityImg
+			}));
+		}
+	}, [prevTier, currentTier, selectedType, psId, activityImg, dispatch]);
+
 	useEffect(()=>{
-		if(prevTier && currentTier){
-			setDetail(prevTier + ' → ' + currentTier);
-		}
-
-		const point = TierPoint(selectedType, prevTier, currentTier);
-		console.log(point);
+		console.log(psInfo);
 		
-		if (point){
+	}, [psInfo]);
+
+	useEffect(()=>{
+		if (psInfo.detail){
+			const prevTierInfos = psInfo.detail.split(" → ")[0];
+			const currentTierInfos = psInfo.detail.split(" → ")[1];
 			
-		}
-	}, [prevTier, currentTier]);
+			setPrevBigTier(prevTierInfos.split(" ")[0]);
+			setPrevTier(prevTierInfos);
 
-	useEffect(()=> {
-		const tiers : string[] = detail.split(" → ");
-		console.log(tiers);
+			setCurrentBigTier(currentTierInfos.split(" ")[0]);
+			setCurrentTier(currentTierInfos);
+			setPsId(psInfo.psID);
+			setDetail(psInfo.detail);
+		}
 		
-	}, [detail]);
+	}, [psInfo])
 
 	return (
 		

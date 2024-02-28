@@ -165,7 +165,7 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 					onDropDownChange={handleDropDownChange}
 					dropDownData={dropDowns}
 				/>
-				{program === '코딩 문제풀이' && type && <TierCalculator selectedType={type} detail={detail} setDetail={setDetail}/>}
+				{program === '코딩 문제풀이' && type && <TierCalculator selectedType={type} activityImg={activityImg} setPoint={setPoint} detail={detail} setDetail={setDetail}/>}
 				{point ? <div className={classes.small_title}>{`환산점수 : ${point}`}</div> : null}
 				
 			</div>
