@@ -8,8 +8,9 @@ import styled from "styled-components";
 import TierCalculator from "./TierCalculator/TierCalculator";
 import Divider from "../Divider/Divider";
 import convertToBase64 from "../../utils/commonFunctions/convertToBase64";
-import { useSelector } from "react-redux";
-import { RootState } from "../../stores/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../stores/redux/store";
+import { updateActivity } from "../../stores/redux/activitySlice";
 
 const AreaWrapper = styled.div`
 	display: flex;
@@ -46,6 +47,7 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 	const [detail, setDetail] = useState<string>("");
 
 	const psInfo = useSelector((state : RootState) => state.psInfo);
+	const dispatch = useDispatch<AppDispatch>();
 
 	const dropDowns : ActivityDropDownProps= {
 		program : program,
@@ -149,6 +151,10 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 		onActivityChange(id, updatedActivity);
 	}
 
+	const handlePsChange = (point : number, newDetail: string) => {
+		dispatch(updateActivity({ id: id, activity: { ...activitiesData, point : point, detail: newDetail }}));
+	}
+
 	return (
 		<div className={classes.container}>
 			
@@ -174,7 +180,7 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 					onDropDownChange={handleDropDownChange}
 					dropDownData={dropDowns}
 				/>
-				{program === '코딩 문제풀이' && type && <TierCalculator selectedType={type} activityImg={activityImg} setPoint={setPoint} detail={detail} setDetail={setDetail}/>}
+				{program === '코딩 문제풀이' && type && <TierCalculator selectedType={type} activityImg={activityImg} handlePsChange={handlePsChange}/>}
 				{point ? <div className={classes.small_title}>{`환산점수 : ${point}`}</div> : null}
 				
 			</div>
@@ -199,7 +205,7 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 					<div className={classes.small_title}>취득일자</div>
 					<input
 						className={classes.input} 
-						type='text'
+						type="date"
 						onChange={(e) => handleDate(e)}
 						onBlur={handleDateBlur}
 						value={date}

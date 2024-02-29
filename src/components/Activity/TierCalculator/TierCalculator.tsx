@@ -10,12 +10,11 @@ import { updatePS } from "../../../stores/redux/psSlice";
 interface TierCalculatorProps{
 	selectedType : string;
 	activityImg : string;
-	setPoint : (point : number) => void;
-	detail : string;
-	setDetail : (detail : string) => void;
+	handlePsChange : (point : number, newDetail : string) => void;
+	
 }
 
-const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityImg, setPoint, detail, setDetail}) => {
+const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityImg, handlePsChange}) => {
 	
 	const [prevBigTier, setPrevBigTier] = useState<string>('');
 	const [prevTier, setPrevTier] = useState('');
@@ -29,6 +28,8 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 
 	const dispatch = useDispatch<AppDispatch>();
 	const psInfo = useSelector((state : RootState) => state.psInfo);
+
+	const activityInfo = useSelector((state: RootState) => state.activityInfo);
 
 	const [psId, setPsId] = useState<string>('');
 
@@ -69,13 +70,10 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 	useEffect(() => {
 		if (prevTier && currentTier) {
 			const newDetail = prevTier + ' → ' + currentTier;
-			setDetail(newDetail);
 			const point = TierPoint(selectedType, prevTier, currentTier);
 			if (point){
-				setPoint(point);
-				console.log('포인트설정됨');
+				handlePsChange(point, newDetail);
 			}
-		
 			// detail이 업데이트될 때 Redux 상태 업데이트
 			dispatch(updatePS({
 				type: selectedType,
@@ -84,8 +82,6 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 				psImage: activityImg
 			}));
 		}
-
-		// 지금 해야할거 : updateSWTotal 이런거 해주고, p
 	}, [prevTier, currentTier, selectedType, psId, activityImg, dispatch]);
 
 	useEffect(()=>{
@@ -100,19 +96,12 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 			
 			setPrevBigTier(prevTierInfos.split(" ")[0]);
 			setPrevTier(prevTierInfos);
-
 			setCurrentBigTier(currentTierInfos.split(" ")[0]);
 			setCurrentTier(currentTierInfos);
 			setPsId(psInfo.psID);
-			setDetail(psInfo.detail);
-			const point = TierPoint(selectedType, prevTier, currentTier);
-			if (point){
-				setPoint(point);
-				console.log('포인트설정됨');
-			}
-		}
-		
-	}, [psInfo])
+			
+		}	
+	}, [psInfo]) // tierCalculator 내부에 있는 정보들
 
 	return (
 		

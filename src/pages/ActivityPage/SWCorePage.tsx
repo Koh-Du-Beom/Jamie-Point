@@ -89,6 +89,7 @@ const SWCorePage:React.FC = () => {
 		};
 
 		calculateSWCoreInfo();
+		
 	}, [activitiesData, dispatch]);
 	
 	// 사이드이펙트의 관리. 원래 handleActivityChange에서 calculate을 했지만, 이 경우 

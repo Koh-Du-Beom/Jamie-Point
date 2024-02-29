@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import ActivityType from "../../types/ActivityType.type";
-import PSActivityType from "../../types/PSActivityType.type";
 
 interface TotalActivity{
 	activityCount : number;
@@ -9,7 +8,6 @@ interface TotalActivity{
 
 interface ActivityState{
 	activities: ActivityType[];
-	psActivities : PSActivityType[];
 	swCoreInfo : TotalActivity;
 	swCooperationInfo : TotalActivity;
 	swValueInfo : TotalActivity;
@@ -20,7 +18,6 @@ interface ActivityState{
 
 const initialState: ActivityState = {
 	activities: [],
-	psActivities : [],
 	swCoreInfo : {activityCount: 0, totalPoint: 0},
 	swCooperationInfo : {activityCount: 0, totalPoint: 0},
 	swValueInfo : {activityCount: 0, totalPoint: 0},
@@ -49,7 +46,7 @@ export const activitySlice = createSlice({
 		},
 		removeActivity: (state, action : PayloadAction<{id : string }>) => {
 			state.activities = state.activities.filter(activity => activity.id !== action.payload.id)
-		},
+		}, // 활동 제거할 때
 		updateSWCoreInfo: (state, action: PayloadAction<{activityCount : number, totalPoint : number}>) => {
 			state.swCoreInfo.activityCount = action.payload.activityCount;
 			state.swCoreInfo.totalPoint = action.payload.totalPoint;
@@ -65,7 +62,7 @@ export const activitySlice = createSlice({
 		updateSWConvergenceInfo: (state, action: PayloadAction<{activityCount : number, totalPoint : number}>) => {
 			state.swConvergenceInfo.activityCount = action.payload.activityCount;
 			state.swConvergenceInfo.totalPoint = action.payload.totalPoint;
-		},
+		}, // 각 분야별 활동정보 업데이트
 		updateTotals: (state) => {
 			state.totalAwards = state.swCoreInfo.activityCount
 				+ state.swCooperationInfo.activityCount
@@ -76,7 +73,7 @@ export const activitySlice = createSlice({
 				+ state.swCooperationInfo.totalPoint
 				+ state.swValueInfo.totalPoint
 				+ state.swConvergenceInfo.totalPoint;
-		},
+		}, //모달에서 쓰일거. 활동전체 포인트 합산해서 보여주기 
 	},
 });
 
