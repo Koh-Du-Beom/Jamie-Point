@@ -13,12 +13,14 @@ const FinalCheckModal: React.FC<ModalProps> = ({ onClose }) => {
 
 	const userInfo = useSelector((state: RootState) => state.userInfo);
   const activityInfo = useSelector((state: RootState) => state.activityInfo);
+	const psInfo = useSelector((state: RootState) => state.psInfo);
 
   const handleDocumentation = async () => {
 
 		const finalInfo = {
 			userInfo, 
 			activityInfo,
+			psInfo,
 		} // redux의 내용들을 통합해서 한번에 보내주기 
 
     const body = JSON.stringify(finalInfo);
