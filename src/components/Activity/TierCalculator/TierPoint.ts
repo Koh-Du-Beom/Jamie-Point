@@ -6,8 +6,8 @@ const TierPoint = (selectedType : string, prevTier : string, currentTier : strin
 	if (selectedType === '프로그래머스 1레벨/2레벨/3레벨 이상'){
 		const prevTierPoint = ProgrammersTierPoint.find((item) => (item.tier === prevTier))?.point;
 		const currentTierPoint = ProgrammersTierPoint.find((item) => (item.tier === currentTier))?.point;
-
-		if (prevTierPoint && currentTierPoint){
+		
+		if (currentTierPoint && (prevTierPoint === 0 || prevTierPoint)){
 			const finalPoint = currentTierPoint - prevTierPoint;
 			return finalPoint >= 30 ? 30 : finalPoint
 		}

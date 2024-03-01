@@ -45,8 +45,6 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 	const [agency, setAgency] = useState<string>("");
 	const [date, setDate] = useState<string>("");
 	const [detail, setDetail] = useState<string>("");
-
-	const psInfo = useSelector((state : RootState) => state.psInfo);
 	const dispatch = useDispatch<AppDispatch>();
 
 	const dropDowns : ActivityDropDownProps= {

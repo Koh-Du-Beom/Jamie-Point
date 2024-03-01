@@ -64,6 +64,8 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 	
 	const handlePsIdBlur = () => {
 		const matchingIndex = psInfo.findIndex(info => info.type === selectedType);
+		console.log(matchingIndex);
+		
 		const updatedPsInfo = {
 				...psInfo[matchingIndex],
 				psID: psId,
@@ -95,22 +97,24 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 			const details = matchingPsInfo.detail.split(" → ");
 			const prevTierInfos = details[0];
 			const currentTierInfos = details.length > 1 ? details[1] : '';
-
+			
 			setPsId(matchingPsInfo.psID);
 			if (selectedType === '프로그래머스 1레벨/2레벨/3레벨 이상') {
-					if (prevTierInfos) setPrevTier(prevTierInfos);
-					if (currentTierInfos) setCurrentTier(currentTierInfos);
+				if (prevTierInfos) setPrevTier(prevTierInfos);
+				if (currentTierInfos) setCurrentTier(currentTierInfos);
+				setPsId(matchingPsInfo.psID);
 			} else {
-					if (prevTierInfos) {
-							setPrevBigTier(prevTierInfos.split(" ")[0]);
-							setPrevTier(prevTierInfos);
-					}
-					if (currentTierInfos) {
-							setCurrentBigTier(currentTierInfos.split(" ")[0]);
-							setCurrentTier(currentTierInfos);
-					}
+				if (prevTierInfos) {
+					setPrevBigTier(prevTierInfos.split(" ")[0]);
+					setPrevTier(prevTierInfos);
+				}
+				if (currentTierInfos) {
+					setCurrentBigTier(currentTierInfos.split(" ")[0]);
+					setCurrentTier(currentTierInfos);
+				}
+				setPsId(matchingPsInfo.psID);
 			}
-	} else {
+		} else {
 			// 초기 상태 설정
 			setPrevBigTier('');
 			setPrevTier('');
@@ -119,6 +123,7 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 			setPsId('');
 	}
 	}, [psInfo, selectedType]);
+
 
 	return (
 		
