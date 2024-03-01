@@ -125,11 +125,8 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 
 		setAgency(activitiesData.agency);
 		setDate(activitiesData.date);
-		if(psInfo.detail && activitiesData.program === '코딩 문제풀이'){
-			setDetail(psInfo.detail);
-		}else{
-			setDetail(activitiesData.detail);	
-		}
+		setDetail(activitiesData.detail);
+		
 
 	}, [activitiesData]); // 페이지가 처음 렌더링 될때 실행
 

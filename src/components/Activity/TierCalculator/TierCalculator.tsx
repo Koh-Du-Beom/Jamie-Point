@@ -29,8 +29,6 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 	const dispatch = useDispatch<AppDispatch>();
 	const psInfo = useSelector((state : RootState) => state.psInfo);
 
-	const activityInfo = useSelector((state: RootState) => state.activityInfo);
-
 	const [psId, setPsId] = useState<string>('');
 
 	const handlePrevBigTierChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -63,13 +61,19 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 		setCurrentTier(event.target.value);
 	}
 
+	
 	const handlePsIdBlur = () => {
-		dispatch(updatePS({...psInfo, psID : psId}));
-	}
+		const matchingIndex = psInfo.findIndex(info => info.type === selectedType);
+		const updatedPsInfo = {
+				...psInfo[matchingIndex],
+				psID: psId,
+		};
+		dispatch(updatePS(updatedPsInfo));
+	};
 
 	useEffect(() => {
 		if (prevTier && currentTier) {
-			const newDetail = prevTier + ' → ' + currentTier;
+			const newDetail = `${prevTier} → ${currentTier}`
 			const point = TierPoint(selectedType, prevTier, currentTier);
 			if (point){
 				handlePsChange(point, newDetail);
@@ -84,24 +88,37 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 		}
 	}, [prevTier, currentTier, selectedType, psId, activityImg, dispatch]);
 
-	useEffect(()=>{
-		console.log(psInfo);
+	useEffect(() => {
+		const matchingPsInfo = psInfo.find(info => info.type === selectedType);
 		
-	}, [psInfo]);
+		if (matchingPsInfo && matchingPsInfo.detail) {
+			const details = matchingPsInfo.detail.split(" → ");
+			const prevTierInfos = details[0];
+			const currentTierInfos = details.length > 1 ? details[1] : '';
 
-	useEffect(()=>{
-		if (psInfo.detail){
-			const prevTierInfos = psInfo.detail.split(" → ")[0];
-			const currentTierInfos = psInfo.detail.split(" → ")[1];
-			
-			setPrevBigTier(prevTierInfos.split(" ")[0]);
-			setPrevTier(prevTierInfos);
-			setCurrentBigTier(currentTierInfos.split(" ")[0]);
-			setCurrentTier(currentTierInfos);
-			setPsId(psInfo.psID);
-			
-		}	
-	}, [psInfo]) // tierCalculator 내부에 있는 정보들
+			setPsId(matchingPsInfo.psID);
+			if (selectedType === '프로그래머스 1레벨/2레벨/3레벨 이상') {
+					if (prevTierInfos) setPrevTier(prevTierInfos);
+					if (currentTierInfos) setCurrentTier(currentTierInfos);
+			} else {
+					if (prevTierInfos) {
+							setPrevBigTier(prevTierInfos.split(" ")[0]);
+							setPrevTier(prevTierInfos);
+					}
+					if (currentTierInfos) {
+							setCurrentBigTier(currentTierInfos.split(" ")[0]);
+							setCurrentTier(currentTierInfos);
+					}
+			}
+	} else {
+			// 초기 상태 설정
+			setPrevBigTier('');
+			setPrevTier('');
+			setCurrentBigTier('');
+			setCurrentTier('');
+			setPsId('');
+	}
+	}, [psInfo, selectedType]);
 
 	return (
 		

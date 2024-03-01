@@ -8,22 +8,33 @@ interface PsState {
 }
 
 
-const initialState: PsState = {
-	type : '',
-	psID : '',
-	detail : '',
-	psImage : '',
-};
+const initialState: PsState[] = [
+	{
+		type : '백준 Bronze/Silver/Gold/Platinum/Diamond/Ruby',
+		psID : '',
+		detail : '',
+		psImage : '',
+	},
+	{
+		type : '프로그래머스 1레벨/2레벨/3레벨 이상',
+		psID : '',
+		detail : '',
+		psImage : '',
+	},
+];
 
 export const psSlice = createSlice({
 	name : 'coding problem solving',
 	initialState,
 	reducers: {
 		updatePS : (state, action : PayloadAction<PsState>) =>{
-			state.type = action.payload.type;
-			state.psID = action.payload.psID;
-			state.detail = action.payload.detail;
-			state.psImage = action.payload.psImage;
+			const index = state.findIndex(ps => ps.type === action.payload.type);
+
+			if(index !== -1){
+				state[index] = action.payload;
+			}else{
+				state.push(action.payload);
+			}
 		},
 	},
 });
