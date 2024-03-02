@@ -61,16 +61,15 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 		setCurrentTier(event.target.value);
 	}
 
-	
 	const handlePsIdBlur = () => {
-		const matchingIndex = psInfo.findIndex(info => info.type === selectedType);
-		console.log(matchingIndex);
-		
-		const updatedPsInfo = {
-				...psInfo[matchingIndex],
-				psID: psId,
-		};
-		dispatch(updatePS(updatedPsInfo));
+    const matchingIndex = psInfo.findIndex(info => info.type === selectedType);
+    if (matchingIndex !== -1) {
+        const updatedPsInfo = {
+            ...psInfo[matchingIndex], // Spread to copy existing info
+            psID: psId, // Only update psID
+        };
+        dispatch(updatePS(updatedPsInfo)); // Dispatch with correct payload
+    }
 	};
 
 	useEffect(() => {
@@ -97,12 +96,11 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 			const details = matchingPsInfo.detail.split(" → ");
 			const prevTierInfos = details[0];
 			const currentTierInfos = details.length > 1 ? details[1] : '';
-			
+
 			setPsId(matchingPsInfo.psID);
 			if (selectedType === '프로그래머스 1레벨/2레벨/3레벨 이상') {
 				if (prevTierInfos) setPrevTier(prevTierInfos);
 				if (currentTierInfos) setCurrentTier(currentTierInfos);
-				setPsId(matchingPsInfo.psID);
 			} else {
 				if (prevTierInfos) {
 					setPrevBigTier(prevTierInfos.split(" ")[0]);
@@ -112,7 +110,7 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 					setCurrentBigTier(currentTierInfos.split(" ")[0]);
 					setCurrentTier(currentTierInfos);
 				}
-				setPsId(matchingPsInfo.psID);
+				
 			}
 		} else {
 			// 초기 상태 설정
@@ -124,23 +122,16 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 	}
 	}, [psInfo, selectedType]);
 
+	useEffect(()=> {
+		console.log(psInfo);
+		
+	}, [psInfo]);
+
 
 	return (
 		
 		<>
 			<div className={classes.wrapper}>
-				<div className={classes.wrapper}>
-					<div className={classes.small_title}>
-						{selectedType === '프로그래머스 1레벨/2레벨/3레벨 이상' ? '프로그래머스ID' : '백준ID'}
-					</div>
-					<input 
-						className={classes.input}
-						type="text"
-						onChange={(e) => setPsId(e.target.value)}
-						onBlur={handlePsIdBlur}
-						value={psId}
-					/>
-				</div>
 				
 				<div className={classes.wrapper}>
 					<div className={classes.small_title}>이전 티어 선택</div>		
@@ -200,7 +191,18 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 					</div>)}
 				</div>
 				
-					
+				<div className={classes.wrapper}>
+					<div className={classes.small_title}>
+						{selectedType === '프로그래머스 1레벨/2레벨/3레벨 이상' ? '프로그래머스ID' : '백준ID'}
+					</div>
+					<input 
+						className={classes.input}
+						type="text"
+						onChange={(e) => setPsId(e.target.value)}
+						onBlur={handlePsIdBlur}
+						value={psId}
+					/>
+				</div>	
 					
 			</div>
 		</>
