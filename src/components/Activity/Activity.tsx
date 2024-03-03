@@ -8,8 +8,8 @@ import styled from "styled-components";
 import TierCalculator from "./TierCalculator/TierCalculator";
 import Divider from "../Divider/Divider";
 import convertToBase64 from "../../utils/commonFunctions/convertToBase64";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../stores/redux/store";
+import { useDispatch, } from "react-redux";
+import { AppDispatch, } from "../../stores/redux/store";
 import { updateActivity } from "../../stores/redux/activitySlice";
 
 const AreaWrapper = styled.div`
