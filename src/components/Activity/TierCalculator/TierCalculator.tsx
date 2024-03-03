@@ -65,32 +65,39 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
     const matchingIndex = psInfo.findIndex(info => info.type === selectedType);
     if (matchingIndex !== -1) {
         const updatedPsInfo = {
-            ...psInfo[matchingIndex], // Spread to copy existing info
-            psID: psId, // Only update psID
+            ...psInfo[matchingIndex],
+            psID: psId, 
         };
-        dispatch(updatePS(updatedPsInfo)); // Dispatch with correct payload
+        dispatch(updatePS(updatedPsInfo)); 
     }
 	};
 
 	useEffect(() => {
 		if (prevTier && currentTier) {
+			
 			const newDetail = `${prevTier} → ${currentTier}`
 			const point = TierPoint(selectedType, prevTier, currentTier);
-			if (point){
-				handlePsChange(point, newDetail);
-			}
+			if (point){	handlePsChange(point, newDetail);	}
 			// detail이 업데이트될 때 Redux 상태 업데이트
 			dispatch(updatePS({
 				type: selectedType,
 				psID: psId,
 				detail: newDetail,
 				psImage: activityImg
-			}));
+			}));		
 		}
 	}, [prevTier, currentTier, selectedType, psId, activityImg, dispatch]);
 
+	useEffect(()=>{
+		console.log(psInfo);
+		
+	}, [psInfo]);
+	
+
 	useEffect(() => {
+		
 		const matchingPsInfo = psInfo.find(info => info.type === selectedType);
+		
 		
 		if (matchingPsInfo && matchingPsInfo.detail) {
 			const details = matchingPsInfo.detail.split(" → ");
@@ -109,30 +116,27 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 				if (currentTierInfos) {
 					setCurrentBigTier(currentTierInfos.split(" ")[0]);
 					setCurrentTier(currentTierInfos);
-				}
-				
+				}	
 			}
-		} else {
-			// 초기 상태 설정
-			setPrevBigTier('');
-			setPrevTier('');
-			setCurrentBigTier('');
-			setCurrentTier('');
-			setPsId('');
-	}
-	}, [psInfo, selectedType]);
-
-	useEffect(()=> {
-		console.log(psInfo);
-		
-	}, [psInfo]);
-
+		} 
+	}, [psInfo, selectedType])
 
 	return (
 		
 		<>
 			<div className={classes.wrapper}>
-				
+				<div className={classes.wrapper}>
+					<div className={classes.small_title}>
+						{selectedType === '프로그래머스 1레벨/2레벨/3레벨 이상' ? '프로그래머스ID' : '백준ID'}
+					</div>
+					<input 
+						className={classes.input}
+						type="text"
+						onChange={(e) => setPsId(e.target.value)}
+						onBlur={handlePsIdBlur}
+						value={psId}
+					/>
+				</div>	
 				<div className={classes.wrapper}>
 					<div className={classes.small_title}>이전 티어 선택</div>		
 					
@@ -190,19 +194,6 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 						
 					</div>)}
 				</div>
-				
-				<div className={classes.wrapper}>
-					<div className={classes.small_title}>
-						{selectedType === '프로그래머스 1레벨/2레벨/3레벨 이상' ? '프로그래머스ID' : '백준ID'}
-					</div>
-					<input 
-						className={classes.input}
-						type="text"
-						onChange={(e) => setPsId(e.target.value)}
-						onBlur={handlePsIdBlur}
-						value={psId}
-					/>
-				</div>	
 					
 			</div>
 		</>
