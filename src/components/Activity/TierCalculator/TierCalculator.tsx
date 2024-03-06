@@ -74,7 +74,6 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 
 	useEffect(() => {
 		if (prevTier && currentTier) {
-			
 			const newDetail = `${prevTier} → ${currentTier}`
 			const point = TierPoint(selectedType, prevTier, currentTier);
 			if (point){	handlePsChange(point, newDetail);	}
@@ -86,18 +85,10 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 				psImage: activityImg
 			}));		
 		}
-	}, [prevTier, currentTier, selectedType, psId, activityImg, dispatch]);
-
-	useEffect(()=>{
-		console.log(psInfo);
-		
-	}, [psInfo]);
-	
+	}, [prevTier, currentTier]);
 
 	useEffect(() => {
-		
 		const matchingPsInfo = psInfo.find(info => info.type === selectedType);
-		
 		
 		if (matchingPsInfo && matchingPsInfo.detail) {
 			const details = matchingPsInfo.detail.split(" → ");

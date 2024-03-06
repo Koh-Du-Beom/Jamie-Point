@@ -10,6 +10,7 @@ import { updateActivity, removeActivity, updateSWCoreInfo, updateTotals } from "
 import { v4 as uuidv4 } from 'uuid';
 import plusButton from '../../assets/plusButton.webp';
 import summaryButton from '../../assets/summaryButton.webp';
+import { removePs } from "../../stores/redux/psSlice";
 
 const SWCorePage:React.FC = () => {
 
@@ -47,6 +48,7 @@ const SWCorePage:React.FC = () => {
 
 	const dispatch = useDispatch<AppDispatch>();
 	const activityInfo = useSelector((state : RootState) => state.activityInfo);
+	const psInfo = useSelector((state : RootState) => state.psInfo);
 
 	useEffect(()=>{
 		const filteredActivities = activityInfo.activities.filter(activity => activity.pageType === area);
@@ -74,7 +76,16 @@ const SWCorePage:React.FC = () => {
 
 	const handleRemoveActivity = (activityId : string) => {
     setActivitiesData(activitiesData.filter(activity => activity.id !== activityId));
-		dispatch(removeActivity({ id : activityId}))
+		dispatch(removeActivity({ id : activityId}));
+		
+		const removedItems = activitiesData.filter((activity) => activity.id === activityId);
+		removedItems.forEach(removedItem => {	
+			if (removedItem.type === "프로그래머스 1레벨/2레벨/3레벨 이상") {
+				dispatch(removePs({ type: removedItem.type }));
+			}else if(removedItem.type === "백준 Bronze/Silver/Gold/Platinum/Diamond/Ruby"){
+				dispatch(removePs({ type : removedItem.type }));
+			}
+		});
 	};
 
 	useEffect(()=>{

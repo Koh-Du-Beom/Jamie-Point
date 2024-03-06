@@ -18,7 +18,7 @@ const TierPoint = (selectedType : string, prevTier : string, currentTier : strin
 		const currentBigTier = currentTier.split(' ')[0];
 		const currentSmallTier = currentTier.split(' ')[1];
 
-		if (prevBigTier !== currentBigTier){
+		if (prevBigTier && currentBigTier){
 			const prevTierPoint = BaekJoonTierPoint.find((item) => (item.bigTier === prevBigTier))?.smallTier.find((item) => item.tier === prevSmallTier)?.point;
 			const currentTierPoint = BaekJoonTierPoint.find((item) => (item.bigTier === currentBigTier))?.smallTier.find((item) => item.tier === currentSmallTier)?.point;
 
@@ -26,6 +26,8 @@ const TierPoint = (selectedType : string, prevTier : string, currentTier : strin
 				const finalPoint = currentTierPoint - prevTierPoint;
 				return finalPoint >= 30 ? 30 : finalPoint;
 			}
+		}else{
+
 		}
 	}
 };

@@ -36,14 +36,11 @@ const FinalCheckModal: React.FC<ModalProps> = ({ onClose }) => {
 			swConvergenceInfo: activityInfo.swConvergenceInfo,
 			totalAwards: activityInfo.totalAwards,
 			totalPoint: activityInfo.totalPoint,
-			psInfos: psInfo.map(ps => ({
-				type: ps.type,
-				psID: ps.psID,
-				detail: ps.detail,
-				psImage: ps.psImage,
-			}))
+			psInfos: psInfo,
 		};
-
+		
+		console.log(psInfo);
+		
 		const body = JSON.stringify(finalInfo);
 		console.log(body); // 최종 전송될 데이터 확인
 
