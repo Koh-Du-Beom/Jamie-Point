@@ -36,7 +36,7 @@ const FinalCheckModal: React.FC<ModalProps> = ({ onClose }) => {
 			swConvergenceInfo: activityInfo.swConvergenceInfo,
 			totalAwards: activityInfo.totalAwards,
 			totalPoint: activityInfo.totalPoint,
-			psInfo: psInfo.map(ps => ({
+			psInfos: psInfo.map(ps => ({
 				type: ps.type,
 				psID: ps.psID,
 				detail: ps.detail,
