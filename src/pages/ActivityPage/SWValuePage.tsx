@@ -6,7 +6,7 @@ import ActivityType from "../../types/ActivityType.type";
 import classes from './ActivityPageStyles.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from "../../stores/redux/store";
-import { updateActivity, removeActivity, updateSWValueInfo, } from "../../stores/redux/activitySlice";
+import { updateActivity, removeActivity, updateSWValueInfo, updateTotals, } from "../../stores/redux/activitySlice";
 import {v4 as uuidv4} from 'uuid';
 import plusButton from '../../assets/plusButton.webp';
 import summaryButton from '../../assets/summaryButton.webp';
@@ -88,6 +88,7 @@ const SWValuePage:React.FC = () => {
 		};
 
 		calculateSWCoreInfo();
+		dispatch(updateTotals());
 	}, [activitiesData, dispatch]);
 
 	return (
