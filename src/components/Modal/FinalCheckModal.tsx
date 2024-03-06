@@ -18,13 +18,34 @@ const FinalCheckModal: React.FC<ModalProps> = ({ onClose }) => {
   const handleDocumentation = async () => {
 
 		const finalInfo = {
-			userInfo, 
-			activityInfo,
-			psInfo,
-		} // redux의 내용들을 통합해서 한번에 보내주기 
+			name: userInfo.name,
+			grade: userInfo.grade,
+			major: userInfo.major,
+			studentNumber: userInfo.studentNumber,
+			phoneNumber: userInfo.phoneNumber,
+			email: userInfo.email,
+			bankAccount: userInfo.bankAccount,
+			bankName: userInfo.bankName,
+			bankBookImg: userInfo.bankBookImg,
+			idCardImg: userInfo.idCardImg,
+			signImg: userInfo.signImg,
+			activities: activityInfo.activities,
+			swCoreInfo: activityInfo.swCoreInfo,
+			swCooperationInfo: activityInfo.swCooperationInfo,
+			swValueInfo: activityInfo.swValueInfo,
+			swConvergenceInfo: activityInfo.swConvergenceInfo,
+			totalAwards: activityInfo.totalAwards,
+			totalPoint: activityInfo.totalPoint,
+			psInfo: psInfo.map(ps => ({
+				type: ps.type,
+				psID: ps.psID,
+				detail: ps.detail,
+				psImage: ps.psImage,
+			}))
+		};
 
-    const body = JSON.stringify(finalInfo);
-    console.log(body);
+		const body = JSON.stringify(finalInfo);
+		console.log(body); // 최종 전송될 데이터 확인
 
     try {
       const response = await axios.post("http://localhost:8080/zs", body, {
