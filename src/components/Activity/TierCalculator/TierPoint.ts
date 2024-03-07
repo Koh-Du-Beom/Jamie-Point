@@ -21,8 +21,8 @@ const TierPoint = (selectedType : string, prevTier : string, currentTier : strin
 		if (prevBigTier && currentBigTier){
 			const prevTierPoint = BaekJoonTierPoint.find((item) => (item.bigTier === prevBigTier))?.smallTier.find((item) => item.tier === prevSmallTier)?.point;
 			const currentTierPoint = BaekJoonTierPoint.find((item) => (item.bigTier === currentBigTier))?.smallTier.find((item) => item.tier === currentSmallTier)?.point;
-
-			if (prevTierPoint && currentTierPoint){
+			
+			if (currentTierPoint && (prevTierPoint || prevTierPoint === 0) ){
 				const finalPoint = currentTierPoint - prevTierPoint;
 				return finalPoint >= 30 ? 30 : finalPoint;
 			}
