@@ -57,8 +57,6 @@ const ContactInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 			setPhoneNumber(userInfo.phoneNumber);
       setEmail(userInfo.email);
 		}
-		console.log(userInfo);
-		
 	}, [userInfo]);
 
 	return (

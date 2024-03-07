@@ -60,6 +60,12 @@ const IdentityInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 		}
 	}
 
+	const handleGradeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const newGrade = e.target.value;
+		setGrade(newGrade); // grade 상태 업데이트
+		dispatch(updateUserInfo({ ...userInfo, grade: newGrade })); // redux 상태 업데이트
+};
+
 	const handleStudentNumberBlur = () => {
 		if (!isValidStudentNumber(studentNumber)){
 			setErrorMsg((prev) => ({...prev, studentNumber : `${studentNumber? '올바른 학번이 아닙니다' : ''}`}));
@@ -110,19 +116,19 @@ const IdentityInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 			</div>
 
 			<div className={classes.wrapper}>
-					
 				<div className={classes.small_title}>학년</div>
-				<input 
-					className={classes.input}
-					type='text'
-					value={!grade ? '' : grade.toString()}
-					onChange={(e) => {setGrade(e.target.value)}}
-					onBlur={handleGradeBlur}
-					
-				/>
+				<select 
+					value={grade} 
+					onChange={handleGradeChange}
+				>
+					<option value="">학년을 선택해주세요</option>
+					{[1, 2, 3, 4].map((item, index) => (
+							<option value={item} key={index}>{item}</option>
+					))}
+				</select>
 				{errorMsg.grade && <div className={classes.errorMsg}>{errorMsg.grade}</div>}
-					
 			</div>
+			
 
 			<div className={classes.wrapper}>
 				<div className={classes.small_title}>학번</div>
