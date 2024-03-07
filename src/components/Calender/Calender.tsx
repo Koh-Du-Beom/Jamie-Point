@@ -1,16 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import classes from './Calender.module.css';
+import ActivityType from "../../types/ActivityType.type";
 
-const Calendar: React.FC = () => {
+interface CalendarProps {
+	activitiesData : ActivityType;
+	onActivityChange: (activityId: string, updatedActivity: ActivityType) => void;
+	id : string;
+}
+
+const Calendar: React.FC<CalendarProps> = ({ activitiesData ,onActivityChange, id }) => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
+
+	const handleStartDate = (date : Date) => {
+		setStartDate(date);
+		const parsedDate = date.toISOString().split('T')[0];
+		const updatedActivity : ActivityType = {
+			...activitiesData,
+			date : parsedDate,
+		};
+		onActivityChange(id, updatedActivity);
+	}
+
+	useEffect(()=>{
+		if(activitiesData.date){
+			const parsedDate = new Date(activitiesData.date);
+			setStartDate(parsedDate);
+		}
+	}, [activitiesData]);
 
   return (
     <>
-      <DatePicker 
+      <DatePicker
         selected={startDate}
-        onChange={(date) => setStartDate(date)} 
+        onChange={handleStartDate} 
         dateFormat='yyyy.MM.dd'
 				formatWeekDay={nameOfDay => nameOfDay.substring(0, 3)}
         maxDate={new Date()}

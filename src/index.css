@@ -15,6 +15,16 @@ body {
     border-radius: 0;
 	}
 	
+	.react-datepicker-wrapper{
+		border: 2px solid transparent;
+		border-radius: 10px;
+		width: 100%;
+	}
+
+	.react-datepicker-wrapper:hover{
+		border: 2px solid #32A4FF;
+	}
+
 	.react-datepicker__header {
 		background-color: #000000;
 		color: #ffffff;

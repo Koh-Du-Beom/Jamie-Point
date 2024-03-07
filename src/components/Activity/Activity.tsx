@@ -44,7 +44,6 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 	const [point, setPoint] = useState<number>(0);
 	
 	const [agency, setAgency] = useState<string>("");
-	const [date, setDate] = useState<string>("");
 	const [detail, setDetail] = useState<string>("");
 	const dispatch = useDispatch<AppDispatch>();
 
@@ -76,35 +75,12 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 		}
 	};
 
-	const handleAgency = (event : React.ChangeEvent<HTMLInputElement>) => {
-		const newAgency = event.target.value;
-		setAgency(newAgency);
-	}
-
 	const handleAgencyBlur = () => {
 		const updatedActivity : ActivityType = {
 			...activitiesData,
 			agency : agency,
 		};
 		onActivityChange(id, updatedActivity);
-	}
-
-	const handleDate = (event : React.ChangeEvent<HTMLInputElement>) => {
-		const newDate = event.target.value;
-		setDate(newDate);
-	}
-	//원래 handle함수에서 아래 로직까지 다 수행하게 했는데 마찬가지로 로
-	const handleDateBlur = () => {
-		const updatedActivity : ActivityType = {
-			...activitiesData,
-			date : date,
-		};
-		onActivityChange(id, updatedActivity);
-	}
-
-	const handleDetail = (event : React.ChangeEvent<HTMLInputElement>) => {
-		const newDetail = event.target.value;
-		setDetail(newDetail);
 	}
 
 	const handleDetailBlur = () => {
@@ -123,7 +99,6 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 		setPoint(activitiesData.point);
 
 		setAgency(activitiesData.agency);
-		setDate(activitiesData.date);
 		setDetail(activitiesData.detail);
 		
 
@@ -184,36 +159,21 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 			<div className={classes.big_title}>활동 세부 사항 </div>
 			
 			<div className={classes.wrapper}>
-				<div>
-					<div className={classes.small_title}>취득기관</div>
-					<input 
-						className={classes.input}
-						type='text'
-						onChange={(e) =>handleAgency(e)}
-						onBlur={handleAgencyBlur}
-						value={agency}
-						name="agency"
-					/>
-				</div>
+				<div className={classes.small_title}>취득기관</div>
+				<input 
+					className={classes.input}
+					type='text'
+					onChange={(e) =>setAgency(e.target.value)}
+					onBlur={handleAgencyBlur}
+					value={agency}
+					name="agency"
+				/>
 			</div>
+
+			<div className={classes.wrapper}>
+				<div className={classes.small_title}>취득일자</div>
+				<Calender activitiesData={activitiesData} onActivityChange={onActivityChange} id={id}/>
 				
-			<div className={classes.wrapper}>
-				<div>
-					<div className={classes.small_title}>취득일자</div>
-					<input
-						className={classes.input} 
-						type="date"
-						onChange={(e) => handleDate(e)}
-						onBlur={handleDateBlur}
-						value={date}
-						name="date"
-					/>
-				</div>
-			</div>
-
-
-			<div className={classes.wrapper}>
-				<Calender/>
 			</div>
 			
 
@@ -222,7 +182,7 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 				<input 
 					className={classes.input}
 					type='text'
-					onChange={(e) => handleDetail(e)}
+					onChange={(e) => setDetail(e.target.value)}
 					onBlur={handleDetailBlur}
 					value={detail}
 					name="detail"
