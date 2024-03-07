@@ -1,0 +1,69 @@
+
+
+.customHeaderContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000000;
+  height: 100%;
+  margin-top: 8px;
+  padding: 0 12px 0 24px;
+}
+
+.year, .month {
+	background-color: #000000;
+	color: #ffffff;
+	border: none;
+	font-size: 16px;
+	font-weight: 500;
+	padding-right: 5px;
+	cursor: pointer;
+}
+
+
+.monthButton {
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	border: none;
+	background-color: #000000;
+	color: #ffffff;
+}
+
+.monthButton:hover{
+	background-color: #ffffff;
+	color: #000000;
+	cursor: pointer;
+}
+
+.monthButton:disabled{
+	visibility: hidden;
+}
+
+.calenderWrapper{
+	background-color: #000000;
+}
+
+.selectedDay,
+.unselectedDay{
+	color: #ffffff;
+	padding : 3px 1px 0 0;
+	width: 36px;
+	height: 36px;
+}
+
+.selectedDay {
+	background-color: #FFA500;
+	border-radius: 50%;
+}
+
+.selectedDay:hover{
+	border-radius: 50%;
+	background-color: #c27101;
+}
+
+.unselectedDay:hover{
+	border-radius: 50%;
+	background-color: rgba(#ffffff, 0.08);
+	color: #000000;
+}

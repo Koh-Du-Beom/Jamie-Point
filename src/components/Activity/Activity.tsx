@@ -11,6 +11,7 @@ import convertToBase64 from "../../utils/commonFunctions/convertToBase64";
 import { useDispatch, } from "react-redux";
 import { AppDispatch, } from "../../stores/redux/store";
 import { updateActivity } from "../../stores/redux/activitySlice";
+import Calender from "../Calender/Calender";
 
 const AreaWrapper = styled.div`
 	display: flex;
@@ -208,6 +209,11 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 						name="date"
 					/>
 				</div>
+			</div>
+
+
+			<div className={classes.wrapper}>
+				<Calender/>
 			</div>
 			
 

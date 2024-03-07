@@ -5,6 +5,48 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+
+	/* datePicker css */
+
+	.react-datepicker {
+    font-family: 'Noto Sans KR', serif;
+    border: none;
+    border-radius: 0;
+	}
+	
+	.react-datepicker__header {
+		background-color: #000000;
+		color: #ffffff;
+		border-bottom: none;
+		border-radius: 0;
+	}
+	
+	.react-datepicker__day-names {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 40px;
+	}
+	.react-datepicker__day-name {
+		color: #5b5b5b;
+		width: 36px;
+	}
+	
+	.react-datepicker__triangle {
+		display: none;
+	}
+
+	.react-datepicker__day--outside-month {
+		cursor: default;
+		visibility: hidden;
+	}
+
+	.react-datepicker__day--disabled {
+		color: #5b5b5b;
+		pointer-events: none;
+	}
+
 }
 
 /* 웹킷 기반 브라우저 외에도, Firefox 등 다른 브라우저를 위한 CSS 스크롤바 속성도 있습니다 */

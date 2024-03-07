@@ -49,17 +49,6 @@ const IdentityInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 		}
 	}
 
-	const handleGradeBlur = () => {
-		if(!isValidStudentNumber(grade)){
-			setErrorMsg((prev) => ({...prev, grade : `${grade? '올바른 학년이 아닙니다' : ''}`}));
-			setGrade('');
-			dispatch(updateUserInfo({ ...userInfo, grade : ''}));
-		}else{
-			setErrorMsg((prev) => ({...prev, grade : undefined}));
-			dispatch(updateUserInfo({...userInfo, grade}));
-		}
-	}
-
 	const handleGradeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const newGrade = e.target.value;
 		setGrade(newGrade); // grade 상태 업데이트
