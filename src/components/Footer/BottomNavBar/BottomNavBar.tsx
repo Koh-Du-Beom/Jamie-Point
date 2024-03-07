@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import classes from './BottomNavBar.module.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../../../stores/redux/store';
+import { useSelector, } from 'react-redux';
+import { RootState, } from '../../../stores/redux/store';
 import { useEffect, useState } from 'react';
 
 interface BottomNavBarProps{

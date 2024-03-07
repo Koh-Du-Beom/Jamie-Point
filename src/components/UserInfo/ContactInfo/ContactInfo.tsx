@@ -70,6 +70,7 @@ const ContactInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 					onChange={(e) => {setPhoneNumber(e.target.value)}}
 					onBlur={handlePhoneNumberBlur}
 					value={phoneNumber}
+					name='phoneNumber'
 				/>
 				{errorMsg.phoneNumber && <div className={classes.errorMsg}>{errorMsg.phoneNumber}</div>}
 			</div>
@@ -82,6 +83,7 @@ const ContactInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 						onChange={(e) => {setEmail(e.target.value)}}	
 						onBlur={handleEmailBlur}
 						value={email}
+						name='email'
 					/>
 					{errorMsg.email && <div className={classes.errorMsg}>{errorMsg.email}</div>}
 				</div>

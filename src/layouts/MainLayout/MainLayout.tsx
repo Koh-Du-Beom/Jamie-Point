@@ -40,7 +40,7 @@ const MainLayout: React.FC<{children : React.ReactNode}> = ({children}) => {
 				<div className={classes.content}>
 					<div className={classes.childrenWrapper}>{children}</div>
 					<div className={classes.rightNavBarWrapper} style={rightNavBarStyle}><RightNavBar/></div>
-					{ isModalOpen ? <FinalCheckModal onClose={closeModal}/> : null }
+					{ isModalOpen ? <FinalCheckModal closeModal={closeModal}/> : null }
 					
 				</div>		
 			</div>

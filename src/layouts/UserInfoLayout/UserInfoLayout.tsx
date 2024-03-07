@@ -17,7 +17,7 @@ const UserInfoLayout : React.FC <{children : React.ReactNode}> = ({children}) =>
 				
 				<div className={classes.content}>
 					{children}
-					{ isModalOpen ? <FinalCheckModal onClose={closeModal}/> : null }
+					{ isModalOpen ? <FinalCheckModal closeModal={closeModal}/> : null }
 				</div>
 				
 			</div>

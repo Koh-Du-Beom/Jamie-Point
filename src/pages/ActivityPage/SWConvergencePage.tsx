@@ -43,10 +43,8 @@ const SWConvergencePage:React.FC = () => {
 		setActivitiesData([...activitiesData, newActivity]);
 	}
 
-
 	const dispatch = useDispatch<AppDispatch>();
 	const activityInfo = useSelector((state : RootState) => state.activityInfo);
-
 
 	useEffect(()=>{
 		const filteredActivities = activityInfo.activities.filter(activity => activity.pageType === area);

@@ -126,6 +126,7 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 						onChange={(e) => setPsId(e.target.value)}
 						onBlur={handlePsIdBlur}
 						value={psId}
+						name="psId"
 					/>
 				</div>	
 				<div className={classes.wrapper}>
@@ -133,7 +134,7 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 					
 				{selectedType === '프로그래머스 1레벨/2레벨/3레벨 이상' ? (
 					<div className={classes.wrapper}>
-						<select value={prevTier} onChange={handleProgPrevTierChange}>
+						<select value={prevTier} onChange={handleProgPrevTierChange} name="prevTier">
 							<option value="">이전 티어를 선택해주세요</option>
 							{programmersTiers.map((tier, index) => <option key={index} value={tier}>{tier}</option>)}
 						</select>	
@@ -141,14 +142,14 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 				) : (
 					<div style={{display: "flex"}}>
 						<div className={classes.wrapper}>
-							<select value={prevBigTier} onChange={handlePrevBigTierChange}>
+							<select value={prevBigTier} onChange={handlePrevBigTierChange} name="prevBigTier">
 								<option value="">큰 티어를 선택해주세요</option>
 								{bojBigTiers.map((tier, index) => <option key={index} value={tier}>{tier}</option>)}
 							</select>
 						</div>
 						{prevBigTier? (
 							<div className={classes.wrapper}>
-								<select value={prevTier} onChange={(e) => setPrevTier(e.target.value)}>
+								<select value={prevTier} onChange={(e) => setPrevTier(e.target.value)} name="prevTier">
 									<option value="">전체 티어를 선택해주세요</option>
 									{getBojPrevTierOptions().map((option, index) => <option key={index} value={option}>{option}</option>)}
 								</select>	
@@ -161,7 +162,7 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 				<div className={classes.small_title}>현재 티어 선택</div>
 				{selectedType === '프로그래머스 1레벨/2레벨/3레벨 이상' ? (
 					<div className={classes.wrapper}>
-						<select value={currentTier} onChange={handleProgCurrentTierChange}>
+						<select value={currentTier} onChange={handleProgCurrentTierChange} name="currentTier">
 							<option value="">현재 티어를 선택해주세요</option>
 							{programmersTiers.map((tier, index) => <option key={index} value={tier}>{tier}</option>)}
 						</select>	
@@ -169,14 +170,14 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 				) : (
 					<div style={{display: "flex"}}>
 						<div className={classes.wrapper}>
-							<select value={currentBigTier} onChange={handleCurrentBigTierChange}>
+							<select value={currentBigTier} onChange={handleCurrentBigTierChange} name="currentBigTier">
 								<option value="">큰 티어를 선택해주세요</option>
 								{bojBigTiers.map((tier, index) => <option key={index} value={tier}>{tier}</option>)}
 							</select>
 						</div>
 						{currentBigTier ? (
 							<div className={classes.wrapper}>
-								<select value={currentTier} onChange={(e) => setCurrentTier(e.target.value)}>
+								<select value={currentTier} onChange={(e) => setCurrentTier(e.target.value)} name="currentTier">
 									<option value="">전체 티어를 선택해주세요</option>
 									{getBojCurrentTierOptions().map((option, index) => <option key={index} value={option}>{option}</option>)}
 								</select>

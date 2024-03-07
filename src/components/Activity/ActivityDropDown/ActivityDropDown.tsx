@@ -92,7 +92,7 @@ const ActivityDropDown: React.FC<ActivityDropDownProps> = ({selectedArea, onDrop
 		<div className={classes.container}>
 			<div className={classes.wrapper}>
 				{selectedArea && (
-					<select value={selectedProgram ?? ''} onChange={handleProgramChange}>
+					<select value={selectedProgram ?? ''} onChange={handleProgramChange} name='selectedProgram'>
 						<option value="">프로그램을 선택해주세요</option>
 						{ActivityDropDownData.find(area => area.area === selectedArea)?.programs.map((program, index) => (
 							<option key={index} value={program.program}>{program.program}</option>
@@ -102,7 +102,7 @@ const ActivityDropDown: React.FC<ActivityDropDownProps> = ({selectedArea, onDrop
 			</div>
 			<div className={classes.wrapper}>
 				{selectedProgram && (
-					<select value={selectedType ?? ''} onChange={handleTypeChange}>
+					<select value={selectedType ?? ''} onChange={handleTypeChange} name='selectedType'>
 						<option value="">종류를 선택해주세요</option>
 						{ActivityDropDownData.find(area => area.area === selectedArea)
 							?.programs.find(program => program.program === selectedProgram)
@@ -123,7 +123,7 @@ const ActivityDropDown: React.FC<ActivityDropDownProps> = ({selectedArea, onDrop
 						?.types.find(type => type.type === selectedType)
 						?.points[0].topic === '' 
 						? ""
-						: <select value={selectedTopic ?? ''} onChange={handleTopicChange}>
+						: <select value={selectedTopic ?? ''} onChange={handleTopicChange} name='selectedTopic'>
 								<option value="">주제를 선택해주세요</option>
 								{ActivityDropDownData.find(area => area.area === selectedArea)
 									?.programs.find(program => program.program === selectedProgram)

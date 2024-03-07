@@ -48,7 +48,6 @@ const SWCorePage:React.FC = () => {
 
 	const dispatch = useDispatch<AppDispatch>();
 	const activityInfo = useSelector((state : RootState) => state.activityInfo);
-	const psInfo = useSelector((state : RootState) => state.psInfo);
 
 	useEffect(()=>{
 		const filteredActivities = activityInfo.activities.filter(activity => activity.pageType === area);

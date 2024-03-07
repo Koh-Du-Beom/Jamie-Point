@@ -6,10 +6,10 @@ import axios from "axios";
 import saveIcon from "../../assets/saveIcon.png";
 
 interface ModalProps {
-  onClose: () => void;
+  closeModal: () => void;
 }
 
-const FinalCheckModal: React.FC<ModalProps> = ({ onClose }) => {
+const FinalCheckModal: React.FC<ModalProps> = ({ closeModal }) => {
 
 	const userInfo = useSelector((state: RootState) => state.userInfo);
   const activityInfo = useSelector((state: RootState) => state.activityInfo);
@@ -69,11 +69,11 @@ const FinalCheckModal: React.FC<ModalProps> = ({ onClose }) => {
         document.body.removeChild(link); // parentNode가 없는 예외적인 상황을 대비
       }
       alert("문서 변환이 성공적으로 완료되었습니다!");
-      onClose();
+      closeModal();
     } catch (error) {
       console.error("문서화 실패 : ", error);
       alert("문서 변환에 실패하였습니다!");
-      onClose();
+      closeModal();
     }
   };
 
@@ -85,7 +85,7 @@ const FinalCheckModal: React.FC<ModalProps> = ({ onClose }) => {
         modalRef.current &&
         !modalRef.current.contains(event.target as Node)
       ) {
-        onClose();
+        closeModal();
       }
     };
 
@@ -96,11 +96,11 @@ const FinalCheckModal: React.FC<ModalProps> = ({ onClose }) => {
       document.body.style.overflow = "unset";
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [onClose]);
+  }, [closeModal]);
 
   return (
     <div>
-      <div className={classes.modalOverlay} onClick={onClose}>
+      <div className={classes.modalOverlay} onClick={closeModal}>
         <div
           className={classes.modalContent}
           onClick={(e) => e.stopPropagation()}

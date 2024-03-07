@@ -191,6 +191,7 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 						onChange={(e) =>handleAgency(e)}
 						onBlur={handleAgencyBlur}
 						value={agency}
+						name="agency"
 					/>
 				</div>
 			</div>
@@ -204,6 +205,7 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 						onChange={(e) => handleDate(e)}
 						onBlur={handleDateBlur}
 						value={date}
+						name="date"
 					/>
 				</div>
 			</div>
@@ -217,6 +219,7 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 					onChange={(e) => handleDetail(e)}
 					onBlur={handleDetailBlur}
 					value={detail}
+					name="detail"
 				/>
 			</div>
 		</div>

@@ -81,6 +81,7 @@ const BankInfo : React.FC<InfoProps> = ({ userInfo, dispatch}) => {
 							onChange={(e) => {setBankAccount(e.target.value)}}	
 							onBlur={handleBankAccountBlur}
 							value={bankAccount}
+							name='bankAccount'
 						/>
 						{errorMsg.bankAccount && <div className={classes.errorMsg}>{errorMsg.bankAccount}</div>}
 					</div>
@@ -94,6 +95,7 @@ const BankInfo : React.FC<InfoProps> = ({ userInfo, dispatch}) => {
 							onChange={(e) => {setBankName(e.target.value)}}
 							onBlur={handleBankNameBlur}
 							value={bankName}
+							name='bankName'
 						/>
 						{errorMsg.bankName && <div className={classes.errorMsg}>{errorMsg.bankName}</div>}
 					</div>

@@ -98,6 +98,7 @@ const IdentityInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 					value={name}
 					onChange={(e)=>setName(e.target.value)}
 					onBlur={handleNameBlur}
+					name='name'
 				/>
 				{errorMsg.name && <div className={classes.errorMsg}>{errorMsg.name}</div>}
 			</div>
@@ -110,6 +111,7 @@ const IdentityInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 					value={major}
 					onChange={(e)=>{setMajor(e.target.value)}}	
 					onBlur={handleMajorBlur}
+					name='major'
 				/>
 				{errorMsg.major && <div className={classes.errorMsg}>{errorMsg.major}</div>}
 			
@@ -120,6 +122,7 @@ const IdentityInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 				<select 
 					value={grade} 
 					onChange={handleGradeChange}
+					name='grade'
 				>
 					<option value="">학년을 선택해주세요</option>
 					{[1, 2, 3, 4].map((item, index) => (
@@ -138,7 +141,7 @@ const IdentityInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 					value={studentNumber}
 					onChange={(e) => {setStudentNumber(e.target.value)}}	
 					onBlur={handleStudentNumberBlur}
-					
+					name='studentNumber'
 				/>
 				{errorMsg.studentNumber && <div className={classes.errorMsg}>{errorMsg.studentNumber}</div>}
 				
