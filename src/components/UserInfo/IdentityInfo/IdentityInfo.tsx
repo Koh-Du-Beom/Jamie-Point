@@ -112,10 +112,11 @@ const IdentityInfo : React.FC<InfoProps> = ({userInfo, dispatch}) => {
 					value={grade} 
 					onChange={handleGradeChange}
 					name='grade'
+					
 				>
 					<option value="">학년을 선택해주세요</option>
 					{[1, 2, 3, 4].map((item, index) => (
-							<option value={item} key={index}>{item}</option>
+						<option value={item} key={index}>{item}</option>
 					))}
 				</select>
 				{errorMsg.grade && <div className={classes.errorMsg}>{errorMsg.grade}</div>}

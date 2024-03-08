@@ -64,10 +64,7 @@ export const activitySlice = createSlice({
 			state.swConvergenceInfo.totalPoint = action.payload.totalPoint;
 		}, // 각 분야별 활동정보 업데이트
 		updateTotals: (state) => {
-			state.totalAwards = state.swCoreInfo.activityCount
-				+ state.swCooperationInfo.activityCount
-				+ state.swValueInfo.activityCount
-				+ state.swConvergenceInfo.activityCount;
+			state.totalAwards = state.activities.filter((activity) => activity.program === 'SW 공모전').length;
 
 			state.totalPoint = state.swCoreInfo.totalPoint
 				+ state.swCooperationInfo.totalPoint

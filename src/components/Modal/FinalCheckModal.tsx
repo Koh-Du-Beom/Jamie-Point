@@ -39,8 +39,6 @@ const FinalCheckModal: React.FC<ModalProps> = ({ closeModal }) => {
 			psInfos: psInfo,
 		};
 		
-		console.log(psInfo);
-		
 		const body = JSON.stringify(finalInfo);
 		console.log(body); // 최종 전송될 데이터 확인
 

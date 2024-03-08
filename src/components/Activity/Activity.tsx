@@ -8,10 +8,11 @@ import styled from "styled-components";
 import TierCalculator from "./TierCalculator/TierCalculator";
 import Divider from "../Divider/Divider";
 import convertToBase64 from "../../utils/commonFunctions/convertToBase64";
-import { useDispatch, } from "react-redux";
-import { AppDispatch, } from "../../stores/redux/store";
+import { useDispatch, useSelector, } from "react-redux";
+import { AppDispatch, RootState } from "../../stores/redux/store";
 import { updateActivity } from "../../stores/redux/activitySlice";
 import Calender from "../Calender/Calender";
+import { updatePS } from "../../stores/redux/psSlice";
 
 const AreaWrapper = styled.div`
 	display: flex;
@@ -47,6 +48,8 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 	const [detail, setDetail] = useState<string>("");
 	const dispatch = useDispatch<AppDispatch>();
 
+	const psInfo = useSelector((state : RootState) => state.psInfo);
+
 	const dropDowns : ActivityDropDownProps= {
 		program : program,
 		type : type,
@@ -63,6 +66,7 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 					activityImg: base64String,
 				};
 				onActivityChange(id, updatedActivity);
+				
 			});
 			
 		} else {

@@ -11,16 +11,21 @@ interface CalendarProps {
 }
 
 const Calendar: React.FC<CalendarProps> = ({ activitiesData ,onActivityChange, id }) => {
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const [startDate, setStartDate] = useState<Date | null>(null);
 
-	const handleStartDate = (date : Date) => {
+	const handleStartDate = (date : Date | null) => {
 		setStartDate(date);
-		const parsedDate = date.toISOString().split('T')[0];
-		const updatedActivity : ActivityType = {
-			...activitiesData,
-			date : parsedDate,
-		};
-		onActivityChange(id, updatedActivity);
+		if(date){
+			const offset = date.getTimezoneOffset() * 60000; 
+    const localDate = new Date(date.getTime() - offset); 
+    const parsedDate = localDate.toISOString().split('T')[0]; 
+			const updatedActivity : ActivityType = {
+				...activitiesData,
+				date : parsedDate,
+			};
+			onActivityChange(id, updatedActivity);
+		}
+		
 	}
 
 	useEffect(()=>{
@@ -39,7 +44,7 @@ const Calendar: React.FC<CalendarProps> = ({ activitiesData ,onActivityChange, i
 				formatWeekDay={nameOfDay => nameOfDay.substring(0, 3)}
         maxDate={new Date()}
 				calendarClassName={classes.calenderWrapper}
-				dayClassName={(d) => (d.getDate() === startDate!.getDate() ? classes.selectedDay : classes.unselectedDay)}
+				dayClassName={(d) => (startDate && d.getDate() === startDate.getDate() ? classes.selectedDay : classes.unselectedDay)}
         renderCustomHeader={({
           date,
           changeYear,
