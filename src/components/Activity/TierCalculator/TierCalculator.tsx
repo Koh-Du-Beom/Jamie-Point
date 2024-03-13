@@ -85,7 +85,7 @@ const TierCalculator: React.FC<TierCalculatorProps> = ({selectedType, activityIm
 				psImage: activityImg
 			}));		
 		}
-	}, [prevTier, currentTier]);
+	}, [prevTier, currentTier, activityImg]);
 
 	useEffect(() => {
 		const matchingPsInfo = psInfo.find(info => info.type === selectedType);

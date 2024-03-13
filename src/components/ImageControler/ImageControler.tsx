@@ -32,19 +32,25 @@ const ImageControler : React.FC<ImageControlerProps> = ({onImageChange, data}) =
 	}, [data]);
 
 	return (
-		<div className={`${classes.imageContainer} ${imgURL ? classes.solidBorder : null}`} onClick={handleImageContainerClick}>
-			{!imgURL? (
-				<div className={classes.uploadPrompt}>
-					<div className={classes.plusIcon}>+</div>
-					<div>사진을 입력해주세요</div>
-				</div> 
-			): <img src={imgURL} alt='Uploaded'/>}
-			<input 
-				ref={fileInputRef}
-				type="file" 
-				accept="image/*"
-				onChange={handleFileChange}/>
-		</div>
+		<>
+			<div className={`${classes.imageContainer} ${imgURL ? classes.solidBorder : null}`} onClick={handleImageContainerClick}>
+				{!imgURL? (
+					<div className={classes.uploadPrompt}>
+						<div className={classes.plusIcon}>+</div>
+						<div>사진을 입력해주세요</div>
+					</div> 
+				): <img src={imgURL} alt='Uploaded'/>}
+				<input 
+					ref={fileInputRef}
+					type="file" 
+					accept="image/*"
+					onChange={handleFileChange}/>
+			</div>
+			
+			<button onClick={()=>setImgURL("")}>사진삭제</button>
+			{/* 사진삭제해도 redux정보도 수정할 수 있게 수정하기 */}
+		</>
+	
 		
 	)
 }

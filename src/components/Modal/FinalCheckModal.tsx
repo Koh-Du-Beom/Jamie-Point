@@ -38,9 +38,15 @@ const FinalCheckModal: React.FC<ModalProps> = ({ closeModal }) => {
 			totalPoint: activityInfo.totalPoint,
 			psInfos: psInfo,
 		};
+
+    const images = finalInfo.activities.map((activity) => activity.activityImg);
+    console.log(images, psInfo.map((info) => info.psImage));
+    
 		
 		const body = JSON.stringify(finalInfo);
-		console.log(body); // 최종 전송될 데이터 확인
+		// console.log(body); // 최종 전송될 데이터 확인
+
+
 
     try {
       const response = await axios.post("http://localhost:8080/zs", body, {

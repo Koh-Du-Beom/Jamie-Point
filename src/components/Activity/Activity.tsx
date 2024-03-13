@@ -48,8 +48,6 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 	const [detail, setDetail] = useState<string>("");
 	const dispatch = useDispatch<AppDispatch>();
 
-	const psInfo = useSelector((state : RootState) => state.psInfo);
-
 	const dropDowns : ActivityDropDownProps= {
 		program : program,
 		type : type,
@@ -129,6 +127,11 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 	const handlePsChange = (point : number, newDetail: string) => {
 		dispatch(updateActivity({ id: id, activity: { ...activitiesData, point : point, detail: newDetail }}));
 	}
+
+	useEffect(()=> {
+		console.log(activitiesData.activityImg);
+		
+	}, [activitiesData.activityImg]);
 
 	return (
 		<div className={classes.container}>
