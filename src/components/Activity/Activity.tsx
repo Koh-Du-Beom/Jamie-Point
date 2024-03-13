@@ -47,6 +47,7 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 	const [agency, setAgency] = useState<string>("");
 	const [detail, setDetail] = useState<string>("");
 	const dispatch = useDispatch<AppDispatch>();
+	const psInfo = useSelector((state : RootState) => state.psInfo);
 
 	const dropDowns : ActivityDropDownProps= {
 		program : program,
@@ -55,7 +56,8 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 		point : point,
 	};
 
-	const handleActivityImg = (newImage: File) => {
+	const handleActivityImg = (newImage: File | null) => {
+		
 		if (newImage) {
 			convertToBase64(newImage, (base64String) => {
 				setActivityImg(base64String);
@@ -64,16 +66,18 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 					activityImg: base64String,
 				};
 				onActivityChange(id, updatedActivity);
-				
 			});
 			
 		} else {
+			console.log('delete button Clicked');
+			
 			setActivityImg("");
 			const updatedActivity: ActivityType = {
 				...activitiesData,
 				activityImg: "",
 			};
 			onActivityChange(id, updatedActivity);
+			
 		}
 	};
 
@@ -127,11 +131,6 @@ const Activity : React.FC<ActivityProps> = ({area, activitiesData, onRemove, onA
 	const handlePsChange = (point : number, newDetail: string) => {
 		dispatch(updateActivity({ id: id, activity: { ...activitiesData, point : point, detail: newDetail }}));
 	}
-
-	useEffect(()=> {
-		console.log(activitiesData.activityImg);
-		
-	}, [activitiesData.activityImg]);
 
 	return (
 		<div className={classes.container}>
